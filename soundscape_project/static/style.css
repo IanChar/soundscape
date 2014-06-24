@@ -1,0 +1,70 @@
+body {
+	width: 100em;
+}
+
+h1 {
+	font-size: 50px;
+	color: #53A553;
+	text-align: left:;
+	margin-bottom: 0em;
+}
+
+header {
+	border-bottom: thick solid #3E7C7C;
+
+	padding: -10em;
+	margin-bottom: 3em;
+	margin-left: 5em;
+
+	width: 100em;
+}
+
+footer {
+	position: relative;
+	float: clear;
+
+	border-top: thick solid #3E7C7C;
+
+	width: 100em;
+	
+	margin-top: 43em;
+	margin-left: 5em;
+
+	text-align: center;
+	
+}
+
+#content {
+	display: inline-block;
+	width: 100em;
+	height: 40em;
+}
+
+#info {
+	float: clear;
+}
+
+#mapContainer {
+	position: absolute;
+	
+	height: 40em;
+	width: 70em;
+
+	margin-left: 5em;
+
+	float: left;
+}
+
+#songTable {
+	position: absolute;
+	
+	height: 38em;
+	width: 27.5em;
+	
+	border: 1em solid #82A63B;
+	
+	margin-left: 70em;
+	margin-top: -40em;
+
+	float: right;
+}
