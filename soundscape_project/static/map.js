@@ -9,14 +9,8 @@ function initialize() {
 	
 	//*****************MAP OPTIONS*******************************
 	var mapOptions = {
-<<<<<<< HEAD
 	  center: new google.maps.LatLng(10, 0),
 	  zoom: 2
-=======
-
-	  center: new google.maps.LatLng(30, -90),
-	  zoom: 3
->>>>>>> 62c2a0ae8d66fe2b74fc4b5293238cc3fca341ac
 	};
 	map = new google.maps.Map(document.getElementById("map-canvas"),
 	    mapOptions);
@@ -85,12 +79,4 @@ var placeCurrentLocationMarker = function() {
 
 //********************INITIALIZE THE MAP*********************
 google.maps.event.addDomListener(window, 'load', initialize);
-<<<<<<< HEAD
 
-=======
-google.maps.event.addDomListener(window, "resize", function() {
-	var center = map.getCenter();
-	google.maps.event.trigger(map, "resize");
-	map.setCenter(center); 
-});
->>>>>>> 62c2a0ae8d66fe2b74fc4b5293238cc3fca341ac
