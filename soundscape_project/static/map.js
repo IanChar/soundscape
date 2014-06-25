@@ -1,9 +1,11 @@
 
 //***********************MAP STUFF****************************
 var map;
-var canPlaceMarker = false;
 var currentLocation;
 var browserSupportFlag = new Boolean();
+var canPlaceMarker = false;
+var markers = [];
+var infoWindows = [];
 
 function initialize() {
 	
@@ -56,17 +58,52 @@ google.maps.event.addDomListener(window, "resize", function() {
 });
 
 
-//***********************MARKER FUCNTIONS********************
-var placeMarker = function(location) {
+//***********************MARKER FUNCTIONS********************
+
+
+//Functions
+function placeMarker(location) {
 	if(canPlaceMarker)
-	{    
+	{   
+
+		/* In the future this will have better UI or maybe even
+		   a whole page dedicated to it. Additionally, instead
+		   of asking for a song name you should pick one of 
+		   your songs off of soundcloud.
+		*/
+		var name = prompt("Enter your name...");
+		var song = prompt("Enter you song name...");
+
+		if(name == null || song == null)
+			return;
+
+		var infoText = '<div id="infoWindow">' +
+						'<p>Name: ' + name + '</p>' +
+						'<p>Song: ' + song + '</p>' +
+						'</div>'
+
 	    var marker = new google.maps.Marker({
 	        position: location, 
 	        map: map
 	    });
+
+	    var infoWindow = new google.maps.InfoWindow({
+	    	content: infoText
+	    });
+
+    	google.maps.event.addListener(marker, 'mouseover', function(){
+			infoWindow.open(map, marker);
+		});
+		google.maps.event.addListener(marker, 'mouseout', function(){
+			infoWindow.close(map, marker);
+		});
+
+	    markers.push(marker);
+	    infoWindows.push(infoWindow);
 	    canPlaceMarker = false;
 	}
 }
+
 
 var enablePlacing = function() {
 	canPlaceMarker = true;
@@ -75,6 +112,10 @@ var enablePlacing = function() {
 var placeCurrentLocationMarker = function() {
 	canPlaceMarker = true;
 	placeMarker(currentLocation);
+}
+
+var test = function() {
+	infoWindows[0].open(map,markers[0]);
 }
 
 //********************INITIALIZE THE MAP*********************
