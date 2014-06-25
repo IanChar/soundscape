@@ -1,29 +1,31 @@
 body {
 	width: 100em;
+	margin-top: 0 em;
+	font-family: "Helvetica", sans-serif;
 }
 
 h1 {
 	font-size: 50px;
-	color: #53A553;
+	color: #10bb5f;
 	text-align: left:;
 	margin-bottom: 0em;
 }
 
 header {
-	border-bottom: thick solid #3E7C7C;
-
-	padding: -10em;
+	border-bottom: thick solid #1487a7;
 	margin-bottom: 3em;
 	margin-left: 5em;
 
 	width: 100em;
 }
 
+
+
 footer {
 	position: relative;
 	float: clear;
 
-	border-top: thick solid #3E7C7C;
+	border-top: thick solid #1487a7;
 
 	width: 100em;
 	
@@ -32,6 +34,11 @@ footer {
 
 	text-align: center;
 	
+}
+
+#message {
+	color :#1487a7;
+	font-size: 1.4em;
 }
 
 #content {
@@ -61,7 +68,7 @@ footer {
 	height: 38em;
 	width: 27.5em;
 	
-	border: 1em solid #82A63B;
+	border: 1em solid #009b48;
 	
 	margin-left: 70em;
 	margin-top: -40em;

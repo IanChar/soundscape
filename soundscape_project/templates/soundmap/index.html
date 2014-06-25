@@ -8,7 +8,6 @@
 	    <meta charset="utf-8"/>
         <link rel="stylesheet" href="{% static "style.css" %}" />
         <script src="{% static "jquery-1.11.1.js" %}"></script>
-
 	    <style type="text/css">
 	      html { height: 100% }
 	      body { height: 100%; margin: 0; padding: 0 }
@@ -28,9 +27,20 @@
   <body>
   	<header>
   		<h1> Soundscape </h1>
+  		<div id = "message">
+  			{% if user.is_authenticated %}
+	        Welcome, {{ user.username }}!</br>
+	        <a href="/soundmap/logout/">Logout</a>
+	       	{% else %}
+	        <a href="/soundmap/register/">Register</a>
+	        <a href="/soundmap/login/">Login</a>
+	       	{% endif %}
+       </div>
+  		
   	</header>	
 	
-	<div id="content">    
+	<div id="content">
+		
 	    <div id="mapContainer">
 	    	<div id="map-canvas"/>
 	    </div>
