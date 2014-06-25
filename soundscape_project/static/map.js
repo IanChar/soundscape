@@ -3,7 +3,7 @@ var map;
 function initialize() {
 	var mapOptions = {
 
-	  center: new google.maps.LatLng(10, 0),
+	  center: new google.maps.LatLng(30, -90),
 	  zoom: 3
 	};
 	map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -18,7 +18,7 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, "resize", function() {
- var center = map.getCenter();
- google.maps.event.trigger(map, "resize");
- map.setCenter(center); 
+	var center = map.getCenter();
+	google.maps.event.trigger(map, "resize");
+	map.setCenter(center); 
 });

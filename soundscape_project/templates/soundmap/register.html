@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Soundscape</title>
+	</head>
+
+	<body>
+		<h1> Register with Soundscape</h1>
+
+		{% if registered%}
+			Soundscape says: <strong> Thank you for registering! </strong>
+		<a href = "/soundmap/"> Return to the homepage. </a>
+		{% else %}
+		Soundscape says: <strong> Register here! </strong> <br/>
+
+		<form id = "user_form" method = "post" action="/soundmap/register/" enctype = "multipart/form-data">
+			{% csrf_token %}
+
+			{{user_form.as_p}}
+			{{profile_form.as_p}}
+
+			<input type = "submit" name="submit" value = "Register"/>
+		</form>
+		{% endif %}
+	</body>
+
+</html>

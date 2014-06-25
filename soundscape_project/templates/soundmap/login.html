@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Soundscape</title>
+	</head>
+
+	<body>
+		<h1>Login to Soundscape</h1>
+
+		<form id="login_form" method = "post" action="/soundmap/login/">
+			{% csrf_token %}
+			Username: <input type="text" name = "username" value="" size="50"/>
+			<br/>
+			Password: <input type="text" name = "password" value="" size="50"/>
+			<br/>
+
+			<input type="submit" value="submit"/>
+		</form>
+	</body>
+</html>
