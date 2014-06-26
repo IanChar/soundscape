@@ -6,13 +6,13 @@ body {
 
 h1 {
 	font-size: 50px;
-	color: #10bb5f;
+	color: #578B8B;
 	text-align: left:;
 	margin-bottom: 0em;
 }
 
 header {
-	border-bottom: thick solid #1487a7;
+	border-bottom: thick solid #A8FC00;
 	margin-bottom: 3em;
 	margin-left: 5em;
 
@@ -34,7 +34,7 @@ footer {
 	position: relative;
 	float: clear;
 
-	border-top: thick solid #1487a7;
+	border-top: thick solid #A8FC00;
 
 	width: 100em;
 	
@@ -77,7 +77,7 @@ footer {
 	height: 38em;
 	width: 27.5em;
 	
-	border: 1em solid #009b48;
+	border: 1em solid #9A9B97;
 	
 	margin-left: 70em;
 	margin-top: -40em;
