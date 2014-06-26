@@ -72,7 +72,7 @@ function placeMarker(location) {
 		   your songs off of soundcloud.
 		*/
 		var name = prompt("Enter your name...");
-		var song = prompt("Enter you song name...");
+		var song = prompt("Enter the song name...");
 
 		if(name == null || song == null)
 			return;

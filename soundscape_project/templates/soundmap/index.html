@@ -46,10 +46,20 @@
 	    </div>
 
 	    <aside id="songTable">
-	    	<ul>
-	    		<li> No songs to play at this time </li>
-	    	</ul>
+	    	{% if song_list %}
+	    		<ul>
+	    			{% for song in song_list %}
+	    			<li>{{song.name}} -- {{song.artist}}</li>
+	    			{% endfor %}
+	    		</ul>
+	    	{% else %}
+		    	<ul>
+		    		<li> No songs to play at this time </li>
+		    	</ul>
+		    {% endif %}
+		    <a href = "/soundmap/add_song/">Add a new song</a>
 	    </aside>
+
 	    <button onclick="enablePlacing()">Place a marker</button>
 	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
 	    <button onclick="test()">Test</button>

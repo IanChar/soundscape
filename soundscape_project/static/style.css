@@ -19,7 +19,9 @@ header {
 	width: 100em;
 }
 
-
+aside > a {
+	margin-left: 1em;
+}
 
 footer {
 	position: relative;

@@ -1,7 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from soundmap.forms import UserForm, UserProfileForm
+from soundmap.models import Song
+from soundmap.forms import UserForm, UserProfileForm, SongForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -9,7 +10,31 @@ from django.contrib.auth.decorators import login_required
 def index(request):
 	context = RequestContext(request)
 
-	return render_to_response('soundmap/index.html', {}, context)
+	song_list = Song.objects.order_by('-likes')[:16]
+	context_dict = {'song_list':song_list}
+
+	return render_to_response('soundmap/index.html', context_dict, context)
+
+def add_song(request):
+	context = RequestContext(request)
+
+	if request.method=='POST':
+		form = SongForm(request.POST)
+
+		if form.is_valid():
+			song = form.save(commit=False)
+
+			song.listens=0
+			song.likes=0
+			song.save()
+
+			return HttpResponseRedirect('/soundmap/')	#After submitting the form, redirects the user back to the homepage
+		else:
+			print form.errors
+	else:
+		form = SongForm()
+
+	return render_to_response('soundmap/add_song.html', {'form': form}, context)
 
 def register(request):
     context = RequestContext(request)
