@@ -17,7 +17,7 @@ header {
 	border-bottom: thick solid #628484;
 	margin-bottom: 3em;
 	margin-left: 5em;
-
+	z-index: 2;
 	width: 99.5em;
 }
 
@@ -59,7 +59,6 @@ footer {
 	margin-left: 5em;
 	margin-top: -15em;
 	background-color: #F1F1F1;
-	z-index: -1;
 }
 
 #info {
