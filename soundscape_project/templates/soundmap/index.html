@@ -35,6 +35,7 @@
 	        <a href="/soundmap/login/">Login</a>
 	       	{% endif %}
        </div>
+
   		
   	</header>	
 	
@@ -63,15 +64,14 @@
 		    </div>
 	    </aside>
 
-	    <button onclick="enablePlacing()">Place a marker</button>
-	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <button onclick="test()">Test</button>
-
 	</div>
 
 	<footer>
 		<p> Powered by Google Maps and SoundCloud </p>
 		<p>&copy; 2014 Ian Char and Tommy Fan</p>
+		<button onclick="enablePlacing()">Place a marker</button>
+	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
+	    <button onclick="test()">Test</button>
 	</footer>
 
 	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
