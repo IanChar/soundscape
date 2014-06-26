@@ -6,16 +6,56 @@ var browserSupportFlag = new Boolean();
 var canPlaceMarker = false;
 var markers = [];
 var infoWindows = [];
+var previousMarkerAnimated = null;
 
 function initialize() {
 	
 	//*****************MAP OPTIONS*******************************
+	var styles = [
+	    {
+	      featureType: "water",
+	      elementType: "all",
+	      stylers: [
+	      	{hue: "#000000"},
+	      	{saturation: -100},
+	      	{lightness: 0}
+	      ]
+	    },{
+	      featureType: "landscape",
+	      elementType: "geometry",
+	      stylers: [
+	      	{hue: "#00FF00"},
+	      	{saturation: 100},
+	        { visibility: "simplified" }
+	      ]
+	    },{
+	      featureType: "road",
+	      elementType: "labels",
+	      stylers: [
+	        { visibility: "off" }
+	      ]
+	    }
+	  ];
+	
+	// Create a new StyledMapType object, passing it the array of styles,
+	// as well as the name to be displayed on the map type control.
+	var styledMap = new google.maps.StyledMapType(styles,
+	  {name: "Styled Map"});
+
 	var mapOptions = {
 	  center: new google.maps.LatLng(10, 0),
-	  zoom: 2
+	  zoom: 2,
+	  mapTypeControlOptions: {
+	  	mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+	  }
 	};
+
 	map = new google.maps.Map(document.getElementById("map-canvas"),
 	    mapOptions);
+	
+	//Associate the styled map with the MapTypeId and set it to display.
+	map.mapTypes.set('map_style', styledMap);
+	map.setMapTypeId('map_style');
 
 	//******************GET CURRENT LOCATION*********************
 	 // Try W3C Geolocation (Preferred)
@@ -44,6 +84,15 @@ function initialize() {
 	    map.setCenter(initialLocation);
 	  }
 
+	//******************SAMPLE MARKERS*************************
+	canPlaceMarker = true;
+	placeMarker(new google.maps.LatLng(42, -71));
+	canPlaceMarker = true;
+	placeMarker(new google.maps.LatLng(35,136), "Joe Hisaishi", "The Path of the Wind", "https://soundcloud.com/nguyenrom/the-path-of-the-wind-totoro");
+	canPlaceMarker = true;
+	placeMarker(new google.maps.LatLng(10, 20), "2Pac", "Changes", "https://soundcloud.com/ghetto-records-2/2pac-changes");
+
+
 	//****************LISTENERS*********************************
 	google.maps.event.addListener(map, 'click', function(event) {
 	   placeMarker(event.latLng);
@@ -58,39 +107,38 @@ google.maps.event.addDomListener(window, "resize", function() {
 });
 
 
-//***********************MARKER FUNCTIONS********************
-
-
-//Functions
-function placeMarker(location) {
+//***********************MARKER STUFF********************
+//CLASS
+function placeMarker(location, name, songName, songUrl){
 	if(canPlaceMarker)
 	{   
+		//*******DEFAULT VARIABLES**********************
+		if(name === undefined)
+			name = "Shumbody";
+		if(songName === undefined)
+			songName = "Folds in Your Hands";
+		if(songUrl === undefined)
+			songUrl = "https://soundcloud.com/shumbody/folds-in-your-hands/";
 
-		/* In the future this will have better UI or maybe even
-		   a whole page dedicated to it. Additionally, instead
-		   of asking for a song name you should pick one of 
-		   your songs off of soundcloud.
-		*/
-		var name = prompt("Enter your name...");
-		var song = prompt("Enter the song name...");
-
-		if(name == null || song == null)
-			return;
-
+		//*********SET UP INFO WINDOW AND MARKER********
 		var infoText = '<div id="infoWindow">' +
 						'<p>Name: ' + name + '</p>' +
-						'<p>Song: ' + song + '</p>' +
+						'<p>Song: ' + songName + '</p>' +
 						'</div>'
 
 	    var marker = new google.maps.Marker({
 	        position: location, 
-	        map: map
+	        map: map,
+	        animation: google.maps.Animation.DROP
+	        //icon: Need to make a better note 'note.jpg'
 	    });
 
 	    var infoWindow = new google.maps.InfoWindow({
 	    	content: infoText
 	    });
 
+
+	    //***************LISTENERS******************
     	google.maps.event.addListener(marker, 'mouseover', function(){
 			infoWindow.open(map, marker);
 		});
@@ -98,16 +146,23 @@ function placeMarker(location) {
 			infoWindow.close(map, marker);
 		});
 		google.maps.event.addListener(marker, 'click', function() {
-			playTestMusic();
+			playMusic(songUrl);
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+			if(previousMarkerAnimated != null)
+			{
+				previousMarkerAnimated.setAnimation(null);
+			}
+			previousMarkerAnimated = marker;
 		});
 
+		//*************PUSH TO ARRAYS*****************
 	    markers.push(marker);
 	    infoWindows.push(infoWindow);
 	    canPlaceMarker = false;
 	}
 }
 
-
+//FUNCTIONS
 var enablePlacing = function() {
 	canPlaceMarker = true;
 }
@@ -117,9 +172,11 @@ var placeCurrentLocationMarker = function() {
 	placeMarker(currentLocation);
 }
 
-var playTestMusic = function() {
-	  SC.oEmbed("https://soundcloud.com/shumbody/folds-in-your-hands/",
-  			{color: "ff0066"},
+
+var playMusic = function(songUrl) {
+	  SC.oEmbed(songUrl,
+  			{color: "ff0066",
+  			 auto_play: true},
   			 document.getElementById("soundcloudPlayer"));
 }
 
