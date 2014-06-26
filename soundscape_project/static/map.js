@@ -97,6 +97,9 @@ function placeMarker(location) {
 		google.maps.event.addListener(marker, 'mouseout', function(){
 			infoWindow.close(map, marker);
 		});
+		google.maps.event.addListener(marker, 'click', function() {
+			playTestMusic();
+		});
 
 	    markers.push(marker);
 	    infoWindows.push(infoWindow);
@@ -112,6 +115,12 @@ var enablePlacing = function() {
 var placeCurrentLocationMarker = function() {
 	canPlaceMarker = true;
 	placeMarker(currentLocation);
+}
+
+var playTestMusic = function() {
+	  SC.oEmbed("https://soundcloud.com/shumbody/folds-in-your-hands/",
+  			{color: "ff0066"},
+  			 document.getElementById("soundcloudPlayer"));
 }
 
 var test = function() {
