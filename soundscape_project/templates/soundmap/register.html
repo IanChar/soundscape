@@ -9,20 +9,29 @@
 		<h1> Register with Soundscape</h1>
 
 		{% if registered%}
-			Soundscape says: <strong> Thank you for registering! </strong>
-		<a href = "/soundmap/"> Return to the homepage. </a>
+			<strong> Thank you for registering! </strong>
+			<p><a href="/soundmap/login/">Login</a> when you are ready</p> </br>
+			<a href = "/soundmap/"> Return to the homepage. </a>
 		{% else %}
-		Soundscape says: <strong> Register here! </strong> <br/>
-
 		<form id = "user_form" method = "post" action="/soundmap/register/" enctype = "multipart/form-data">
 			{% csrf_token %}
+			<h2>Register here!</h2>
 
-			{{user_form.as_p}}
-			{{profile_form.as_p}}
+			{% for field in user_form.visible_fields %}
+				{{field.errors}}
+				{{field.help_text}} <br/>
+				{{field}} <br/>
+			{% endfor %}
 
+			{% for field in profile_form.visible_fields %}
+				{{field.errors}}
+				{{field.help_text}} <br/>
+				{{field}} <br/>
+			{% endfor %}
+
+			</br>
 			<input type = "submit" name="submit" value = "Register"/>
 		</form>
 		{% endif %}
 	</body>
-
 </html>

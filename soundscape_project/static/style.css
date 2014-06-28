@@ -2,19 +2,20 @@ body {
 	width: 100em;
 	margin-top: 0 em;
 	font-family: "Helvetica", sans-serif;
-	background-color: #BBCD99;
+	background-color: #10bb5f;
 }
 
 h1 {
 	font-size: 50px;
-	color: #83AF83;
+	color: #34c376;
 	text-align: left:;
 	margin-bottom: 0em;
 }
 
 header {
+	background-color:#FFFFFF;
 	position: absolute;
-	border-bottom: thick solid #628484;
+	border-bottom: thick solid #1487a7;
 	margin-bottom: 3em;
 	margin-left: 5em;
 	z-index: 2;
@@ -47,7 +48,7 @@ footer {
 }
 
 #message {
-	color :#1487a7;
+	color :#34c376;
 	font-size: 1.4em;
 }
 
@@ -81,7 +82,7 @@ footer {
 	height: 38em;
 	width: 27.5em;
 	
-	border: 1em solid #ADADAD;
+	border: 1em solid #10bb5f;
 	
 	margin-left: 70em;
 	margin-top: -40em;

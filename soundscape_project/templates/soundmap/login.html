@@ -9,12 +9,18 @@
 		<h1>Login to Soundscape</h1>
 
 		<form id="login_form" method = "post" action="/soundmap/login/">
+			<h2>Please Login</h2>
 			{% csrf_token %}
+
+			{% if bad_details %}
+				<p><font color="#FF0000"> Your username and/or password were incorrect. Please try again</font></p>
+			{% elif disabled_acct %}
+				<p><font color="#FF0000"> Your account has been disabled. </font></p>
+			{% endif %}
 			Username: <input type="text" name = "username" value="" size="50"/>
 			<br/>
 			Password: <input type="text" name = "password" value="" size="50"/>
 			<br/>
-
 			<input type="submit" value="submit"/>
 		</form>
 	</body>

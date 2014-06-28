@@ -93,6 +93,8 @@ def register(request):
 def user_login(request):
 	context = RequestContext(request)
 
+	context_dict = {}
+
 	if request.method== 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -100,18 +102,19 @@ def user_login(request):
 		user = authenticate(username=username, password=password)
 
 		if user:
-
 			if user.is_active:
 				login(request, user)
 				return HttpResponseRedirect('/soundmap/')
 			else:
-				return HttpResponse('Your Soundscape account has been disabled.')
+				context_dict['disabled_acct'] = True
+				return render_to_response('soundmap/login.html', context_dict, context)
 		else:
-			print "Invalid login details: {0}, {1}".format(username, password)
-			return HttpResponse("Invalid login details provided.")
-
+			#print "Invalid login details: {0}, {1}".format(username, password)
+			#return HttpResponse("Invalid login details provided.")
+			context_dict['bad_details']=True
+			return render_to_response('soundmap/login.html', context_dict, context)
 	else:
-		return render_to_response('soundmap/login.html', {}, context)
+		return render_to_response('soundmap/login.html', context_dict, context)
 
 @login_required
 def restricted(request):
