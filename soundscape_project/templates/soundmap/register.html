@@ -1,11 +1,19 @@
-<!DOCTYPE html>
+{% extends 'soundmap/base.html' %}
 
-<html>
-	<head>
-		<title>Soundscape</title>
-	</head>
+{% load static %}
 
-	<body>
+{% block title %} Register {% endblock %}
+
+{% block head_block %}
+	<style>
+		#registration_form {
+			padding-left: 2em;
+		}
+	</style>
+{% endblock %}
+
+{% block body_block %}
+	<div id="registration_form">
 		<h1> Register with Soundscape</h1>
 
 		{% if registered%}
@@ -33,5 +41,5 @@
 			<input type = "submit" name="submit" value = "Register"/>
 		</form>
 		{% endif %}
-	</body>
-</html>
+	</div>
+{% endblock %}

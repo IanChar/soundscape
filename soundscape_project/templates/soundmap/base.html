@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	    <meta charset="utf-8"/>
+		<link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+		<script src="{% static "jquery-1.11.1.js" %}"></script>
+		<title>Soundscape - {% block title %} Interactive Sound Map {% endblock %}</title>
+		{% block head_block %}
+		{% endblock %}
+	</head>
+
+	<body>
+		<div id="header">
+	  		<h1> Soundscape </h1>
+	  		<div id = "message">
+	  			{% if user.is_authenticated %}
+		        Welcome, {{ user.username }}!</br>
+		        <a href="/soundmap/logout/">Logout</a>
+		       	{% else %}
+		       	<h3>Welcome to Soundscape!</h3>
+		        <a href="/soundmap/register/">Register</a>
+		        <a href="/soundmap/login/">Login</a>
+		       	{% endif %}
+	       </div>
+
+	  	</div>
+		
+		<div id="content">
+			{% block body_block %}
+			{% endblock %}
+		</div>
+		
+		<footer>
+			<p> Powered by Google Maps and SoundCloud </p>
+			<p>&copy; 2014 Ian Char and Tommy Fan</p>
+			<button onclick="enablePlacing()">Place a marker</button>
+		    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
+		    <button onclick="test()">Test</button>
+		</footer>
+
+	</body>
+
+</html>

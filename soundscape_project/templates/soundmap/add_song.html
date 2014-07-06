@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Soundscape</title>
-    </head>
+{% extends 'soundmap/base.html' %}
 
-    <body>
+{% load static %}
+
+{% block title %} Add a Song {% endblock %}
+
+{% block head_block %}
+    <link rel = "stylesheet" href=" {% static 'css/add_song_style.css' %}" />
+{% endblock %}
+
+{% block body_block %}
+    <div id="form">
         <h1>Add a Song</h1>
 
         <form id="song_form" method="post" action="/soundmap/add_song/">
@@ -22,6 +27,21 @@
 
             <input type="submit" name="submit" value="Add Song" />
         </form>
-    </body>
+    </div>
 
-</html>
+    <div id="songTable">
+        {% if song_list %}
+            <ul>
+                {% for song in song_list %}
+                <li>{{song.name}} -- {{song.artist}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <ul>
+                <li> No songs to play at this time </li>
+            </ul>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

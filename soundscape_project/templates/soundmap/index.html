@@ -1,45 +1,22 @@
-<!DOCTYPE html>
+{% extends 'soundmap/base.html' %}
 
 {% load static %}
 
-<html>
-	<head>
-	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	    <meta charset="utf-8"/>
-        <link rel="stylesheet" href="{% static "style.css" %}" />
-        <script src="{% static "jquery-1.11.1.js" %}"></script>
-	    <style type="text/css">
-	      html { height: 100% }
-	      body { height: 100%; margin: 0; padding: 0 }
-	      #map-canvas { height: 100% }
-	    </style>
+{% block title %} Soundscape {% endblock %}
 
+{% block head_block %} 
+		<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
+        <script src="{% static "jquery-1.11.1.js" %}"></script>
 	    <script src="{% static "sensitiveInfo.js" %}"></script>
-	    
 	    <script type="text/javascript"
 	      src="https://maps.googleapis.com/maps/api/js?key=".concat(mapKey)>
 	    </script>
 	    <script src="http://connect.soundcloud.com/sdk.js"></script>
- 	</head>
+ {% endblock %}
 
 
-  <body>
-  	<div id="header">
-  		<h1> Soundscape </h1>
-  		<div id = "message">
-  			{% if user.is_authenticated %}
-	        Welcome, {{ user.username }}!</br>
-	        <a href="/soundmap/logout/">Logout</a>
-	       	{% else %}
-	       	<h3>Welcome to Soundscape!</h3>
-	        <a href="/soundmap/register/">Register</a>
-	        <a href="/soundmap/login/">Login</a>
-	       	{% endif %}
-       </div>
+{% block body_block %}
 
-  	</div>
-	
-	<div id="content">
 	    <div id="mapContainer"></div>
 
 	    <div id="songTable">
@@ -59,21 +36,10 @@
 		    <div id="soundcloudPlayer">
 		    	<p>Click on a marker to hear a song!</p>
 		    </div>
+
 	    </div>
 
-	</div>
-
-	<footer>
-		<p> Powered by Google Maps and SoundCloud </p>
-		<p>&copy; 2014 Ian Char and Tommy Fan</p>
-		<button onclick="enablePlacing()">Place a marker</button>
-	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <button onclick="test()">Test</button>
-	</footer>
 
 	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
-  
-  </body>
-
-</html>
+{% endblock %}

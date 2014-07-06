@@ -1,0 +1,16 @@
+#songTable {
+    position: static;
+    display:inline;
+    height: 45em;
+    width: 24.5%;
+
+    border: 0.5em solid #1487a7;
+    float: right;
+}
+
+#form{
+    padding-left: 2em;
+    width:70%;
+    position: static;
+    display: inline-block;
+}

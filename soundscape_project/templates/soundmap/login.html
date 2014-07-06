@@ -1,11 +1,17 @@
-<!DOCTYPE html>
+{% extends 'soundmap/base.html' %}
 
-<html>
-	<head>
-		<title>Soundscape</title>
-	</head>
+{% block title %} Login {% endblock%}
 
-	<body>
+{% block head_block %}
+	<style>
+		#login {
+			padding-left: 2em;
+		}
+	</style>
+{% endblock %}
+
+{% block body_block %}
+	<div id="login">
 		<h1>Login to Soundscape</h1>
 
 		<form id="login_form" method = "post" action="/soundmap/login/">
@@ -23,5 +29,5 @@
 			<br/>
 			<input type="submit" value="submit"/>
 		</form>
-	</body>
-</html>
+	</div>
+{% endblock %}

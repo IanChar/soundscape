@@ -5,6 +5,7 @@ body {
 }
 
 h1 {
+
 	font-size: 50px;
 	color: #34c376;
 	text-align: left:;
@@ -17,12 +18,25 @@ h1 {
 	border: thick solid #1487a7;
 	margin-bottom: 1em;
 	margin-left: 5%;
+	padding-left: 2em;
 	z-index: 2;
 	width: 95%;
 }
 
-aside > a {
-	margin-left: 1em;
+#message {
+	color :#34c376;
+	font-size: 22px;
+}
+
+#content {
+	
+	position: static;
+	display: inline-block;
+	width: 95%;
+	margin-left: 5%;
+	background-color: #F1F1F1;
+	border-bottom: thick solid #628484;
+
 }
 
 footer {
@@ -33,39 +47,6 @@ footer {
 	color: #FFFFFF;
 }
 
-#message {
-	color :#34c376;
-	font-size: 22px;
-}
-
-#content {
-	position: static;
-	display: inline-block;
-	width: 95%;
-	margin-left: 5%;
-	background-color: #F1F1F1;
-	border-bottom: thick solid #628484;
-
-}
-
 #info {
 	float: clear;
-}
-
-#mapContainer {
-	position: static;
-	height: 45em;
-	width: 73.8%;
-	display: inline;
-	float: left;
-}
-
-#songTable {
-	position: static;
-	display:inline;
-	height: 45em;
-	width: 24.5%;
-	
-	border: 0.9em solid #1487a7;
-	float: right;
 }
