@@ -4,14 +4,22 @@ aside > a {
 
 #mapContainer {
 	position: static;
-	height: 45em;
+	height: 53em;
 	float: left;
 }
 
 #songTable {
 	position: static;
 	padding-top: 2em;
-	height: 45em;
+	height: 53em;
 	border: 0.5em solid #1487a7;
 	float: right;
+}
+
+#soundcloudPlayer {
+	height: 50%;
+}
+#iframe {
+	display: block;
+	height: 50%;
 }
