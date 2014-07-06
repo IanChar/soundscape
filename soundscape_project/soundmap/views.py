@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from soundmap.models import Song
+from soundmap.models import Song, UserProfile, User
 from soundmap.forms import UserForm, UserProfileForm, SongForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -115,6 +115,22 @@ def user_login(request):
 			return render_to_response('soundmap/login.html', context_dict, context)
 	else:
 		return render_to_response('soundmap/login.html', context_dict, context)
+
+def profile(request, profile_username):
+	context = RequestContext(request)
+
+	context_dict={}
+
+	u = User.objects.get(username = profile_username)
+	if u:
+		context['user']=u
+		try:
+			profile = UserProfile.objects.get(user=u)
+			context['user_profile']=profile
+
+		except UserProfile.DoesNotExist:
+			pass
+	return render_to_response('soundmap/profile.html', context_dict, context)
 
 @login_required
 def restricted(request):

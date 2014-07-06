@@ -7,6 +7,8 @@ class Song(models.Model):
 	url = models.URLField()
 	listens = models.IntegerField(default=0)
 	likes = models.IntegerField(default=0)
+	latitude = models.FloatField(default=0)
+	longitude = models.FloatField(default=0)
 
 	def __unicode__(self):
 		return self.name

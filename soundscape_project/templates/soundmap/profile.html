@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Soundscape</title>
+	</head>
+
+	<body>
+		{% if user_profile %}
+		<h1>{{user.username}}'s Profile</h1>
+
+			{{user_profile.location}} <br/>
+			{% if user_profile.picture %}
+				<img src="{{user_profile.picture.url}}"/>
+			{% endif %}
+		{% endif %}
+	</body>
+
+</html>

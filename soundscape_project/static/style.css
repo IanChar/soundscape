@@ -1,6 +1,5 @@
 body {
-	width: 100em;
-	margin-top: 0 em;
+
 	font-family: "Helvetica", sans-serif;
 	background-color: #10bb5f;
 }
@@ -9,24 +8,17 @@ h1 {
 	font-size: 50px;
 	color: #34c376;
 	text-align: left:;
-	margin-bottom: 0em;
 }
 
-header {
+#header {
 	background-color:#FFFFFF;
-	position: absolute;
-	border-bottom: thick solid #1487a7;
-	margin-bottom: 3em;
-	margin-left: 5em;
+	position: static;
+	display: block;
+	border: thick solid #1487a7;
+	margin-bottom: 1em;
+	margin-left: 5%;
 	z-index: 2;
-	width: 99.5em;
-}
-
-iframe {
-	position: relative;
-	margin-top: 10em;
-	width: 27.5em;
-	height: 10.25em;
+	width: 95%;
 }
 
 aside > a {
@@ -34,32 +26,26 @@ aside > a {
 }
 
 footer {
-	position: relative;
+	position: static;
 	float: clear;
-
-	border-top: thick solid #628484;
-
-	width: 99.5em;
-	
-	margin-top: 62.5em;
-
+	width: 100%;
 	text-align: center;
-	
+	color: #FFFFFF;
 }
 
 #message {
 	color :#34c376;
-	font-size: 1.4em;
+	font-size: 22px;
 }
 
 #content {
-	position: absolute;
+	position: static;
 	display: inline-block;
-	width: 99.5em;
-	height: 73em;
-	margin-left: 5em;
-	margin-top: -15em;
+	width: 95%;
+	margin-left: 5%;
 	background-color: #F1F1F1;
+	border-bottom: thick solid #628484;
+
 }
 
 #info {
@@ -67,25 +53,19 @@ footer {
 }
 
 #mapContainer {
-	position: absolute;
-	
-	height: 40em;
-	width: 70em;
-
+	position: static;
+	height: 45em;
+	width: 73.8%;
+	display: inline;
 	float: left;
-	margin-top: 22.5em;
 }
 
 #songTable {
-	position: absolute;
+	position: static;
+	display:inline;
+	height: 45em;
+	width: 24.5%;
 	
-	height: 38em;
-	width: 27.5em;
-	
-	border: 1em solid #10bb5f;
-	
-	margin-left: 70em;
-	margin-top: -40em;
-
+	border: 0.9em solid #1487a7;
 	float: right;
 }

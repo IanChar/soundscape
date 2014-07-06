@@ -7,4 +7,5 @@ urlpatterns=patterns('',
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^register/$', views.register, name='register'),
 	url(r'^add_song/$', views.add_song, name='add_song'),
+	url(r'^profile/(?P<profile_username>\w+)/$', views.profile, name='profile'),
 )

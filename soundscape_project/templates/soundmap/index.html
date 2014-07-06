@@ -24,7 +24,7 @@
 
 
   <body>
-  	<header>
+  	<div id="header">
   		<h1> Soundscape </h1>
   		<div id = "message">
   			{% if user.is_authenticated %}
@@ -37,14 +37,12 @@
 	       	{% endif %}
        </div>
 
-  	</header>	
+  	</div>
 	
 	<div id="content">
-	    <div id="mapContainer">
-	    	<div id="map-canvas"/>
-	    </div>
+	    <div id="mapContainer"></div>
 
-	    <aside id="songTable">
+	    <div id="songTable">
 	    	{% if song_list %}
 	    		<ul>
 	    			{% for song in song_list %}
@@ -61,7 +59,7 @@
 		    <div id="soundcloudPlayer">
 		    	<p>Click on a marker to hear a song!</p>
 		    </div>
-	    </aside>
+	    </div>
 
 	</div>
 

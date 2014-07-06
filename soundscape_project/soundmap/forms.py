@@ -8,9 +8,12 @@ class SongForm(forms.ModelForm):
 	url = forms.URLField(max_length=200, help_text="Please enter the URL of the Soundcloud file, if available.", required=False)
 	listens = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 	likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+	latitude = forms.FloatField(widget=forms.HiddenInput(), initial=0)
+	longitude = forms.FloatField(widget=forms.HiddenInput(), initial=0)
 
 	class Meta:
 		model = Song
+		fields = ('name', 'artist', 'url', 'listens', 'likes', 'latitude', 'longitude')
 
 class UserForm(forms.ModelForm):
 	username= forms.CharField(help_text="Please enter your username.")

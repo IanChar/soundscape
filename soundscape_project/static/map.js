@@ -50,7 +50,7 @@ function initialize() {
 	  }
 	};
 
-	map = new google.maps.Map(document.getElementById("map-canvas"),
+	map = new google.maps.Map(document.getElementById("mapContainer"),
 	    mapOptions);
 	
 	//Associate the styled map with the MapTypeId and set it to display.
