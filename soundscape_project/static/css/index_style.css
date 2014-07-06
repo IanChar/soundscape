@@ -5,17 +5,13 @@ aside > a {
 #mapContainer {
 	position: static;
 	height: 45em;
-	width: 73.8%;
-	display: inline;
 	float: left;
 }
 
 #songTable {
 	position: static;
-	display:inline;
+	padding-top: 2em;
 	height: 45em;
-	width: 24.5%;
-	
 	border: 0.5em solid #1487a7;
 	float: right;
 }

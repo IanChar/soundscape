@@ -6,16 +6,20 @@
 	<style>
 		#login {
 			padding-left: 2em;
+			height: 30em;
+		}
+		#login_form {
+			padding-left: 0;
+			padding-right: 0;
 		}
 	</style>
 {% endblock %}
 
 {% block body_block %}
-	<div id="login">
-		<h1>Login to Soundscape</h1>
+<div class="container-fluid" id="login">
 
-		<form id="login_form" method = "post" action="/soundmap/login/">
-			<h2>Please Login</h2>
+		<form class="col-xs-5" id="login_form" method = "post" action="/soundmap/login/">
+			<h1>Please Login</h1>
 			{% csrf_token %}
 
 			{% if bad_details %}
@@ -23,11 +27,14 @@
 			{% elif disabled_acct %}
 				<p><font color="#FF0000"> Your account has been disabled. </font></p>
 			{% endif %}
-			Username: <input type="text" name = "username" value="" size="50"/>
+			<label for="login_username">Username:</label>
+			<input class="form-control" type="text" name = "username" value="" size="50" placeholder="Username"/>
 			<br/>
-			Password: <input type="text" name = "password" value="" size="50"/>
+			<label for="login_password">Password:</label>
+			<input class="form-control" type="password" name = "password" value="" size="50" placeholder="Password"/>
 			<br/>
-			<input type="submit" value="submit"/>
+			<input class="btn btn-primary" type="submit" value="Submit"/>
 		</form>
-	</div>
+</div>
+
 {% endblock %}

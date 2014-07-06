@@ -1,16 +1,20 @@
-#songTable {
-    position: static;
-    display:inline;
-    height: 45em;
-    width: 24.5%;
-
-    border: 0.5em solid #1487a7;
-    float: right;
+#container {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #form{
     padding-left: 2em;
     width:70%;
+    height:45em;
     position: static;
     display: inline-block;
+    float:left;
+}
+#songTable {
+    padding-top: 2em;
+    position: static;
+    height: 45em;
+    border: 0.5em solid #1487a7;
+    float: right;
 }

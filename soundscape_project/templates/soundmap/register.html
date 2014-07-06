@@ -6,31 +6,33 @@
 
 {% block head_block %}
 	<style>
+		#container {
+			padding-left: 0;
+		}
 		#registration_form {
 			padding-left: 2em;
+			height:30em;
 		}
 	</style>
 {% endblock %}
 
 {% block body_block %}
-	<div id="registration_form">
-		<h1> Register with Soundscape</h1>
-
+<div class="container-fluid" id="container">
+	<div class="col-xs-5" id="registration_form">
 		{% if registered%}
-			<strong> Thank you for registering! </strong>
-			<p><a href="/soundmap/login/">Login</a> when you are ready</p> </br>
+			<h1> Thank you for registering! </h1> </br>
+			<a href="/soundmap/login/">Login</a> when you are ready </br>
 			<a href = "/soundmap/"> Return to the homepage. </a>
 		{% else %}
-		<form id = "user_form" method = "post" action="/soundmap/register/" enctype = "multipart/form-data">
-			{% csrf_token %}
-			<h2>Register here!</h2>
 
+		<form class="form-horizontal" role="form" id = "user_form" method = "post" action="/soundmap/register/" enctype = "multipart/form-data">
+			{% csrf_token %}
+			<h1>Register here!</h1>
 			{% for field in user_form.visible_fields %}
 				{{field.errors}}
 				{{field.help_text}} <br/>
 				{{field}} <br/>
 			{% endfor %}
-
 			{% for field in profile_form.visible_fields %}
 				{{field.errors}}
 				{{field.help_text}} <br/>
@@ -38,8 +40,9 @@
 			{% endfor %}
 
 			</br>
-			<input type = "submit" name="submit" value = "Register"/>
+			<input class="btn btn-primary" type = "submit" name="submit" value = "Register"/>
 		</form>
 		{% endif %}
 	</div>
+</div>
 {% endblock %}

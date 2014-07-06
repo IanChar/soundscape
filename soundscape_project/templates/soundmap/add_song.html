@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block body_block %}
-    <div id="form">
+<div class="container-fluid" id="container">
+    <div class="col-md-9" id="form">
         <h1>Add a Song</h1>
 
         <form id="song_form" method="post" action="/soundmap/add_song/">
@@ -21,15 +22,15 @@
 
             {% for field in form.visible_fields %}
                 {{ field.errors }}
-                {{ field.help_text }}
+                {{ field.help_text }} </br>
                 {{ field }} </br>
             {% endfor %}
-
-            <input type="submit" name="submit" value="Add Song" />
+            </br>
+            <input class="btn btn-primary" type="submit" name="submit" value="Add Song" />
         </form>
     </div>
 
-    <div id="songTable">
+    <div class = "col-md-3" id="songTable">
         {% if song_list %}
             <ul>
                 {% for song in song_list %}
@@ -37,11 +38,8 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <ul>
-                <li> No songs to play at this time </li>
-            </ul>
+            <p> No songs to play at this time </p>
         {% endif %}
-
     </div>
-
+</div>
 {% endblock %}
