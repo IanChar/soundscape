@@ -20,6 +20,7 @@
 	    <div class = "col-md-9" id="mapContainer"></div>
 
 	    <div class = "col-md-3" id="songTable">
+	    	{% block side_block %}
 	    	{% if song_list %}
 	    		<ul>
 	    			{% for song in song_list %}
@@ -32,14 +33,16 @@
 		    	</ul>
 		    {% endif %}
 		    <a href = "/soundmap/add_song/">Add a new song</a>
-
+			{% endblock %}
+			
 		    <div id="soundcloudPlayer">
 		    	<p>Click on a marker to hear a song!</p>
 		    </div>
-
 	    </div>
 
-
+		<button onclick="enablePlacing()">Place a marker</button>
+	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
+	    <button onclick="test()">Test</button>
 	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 {% endblock %}

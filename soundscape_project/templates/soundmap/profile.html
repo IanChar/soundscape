@@ -1,19 +1,14 @@
-<!DOCTYPE html>
+{% extends 'soundmap/index.html' %}
 
-<html>
-	<head>
-		<title>Soundscape</title>
-	</head>
+{% block title %} {{user.username}}'s Profile {% endblock %}
 
-	<body>
-		{% if user_profile %}
-		<h1>{{user.username}}'s Profile</h1>
+{% block side_block %}
+	{% if user_profile %}
+	<h1>{{user.username}}'s Profile</h1>
 
-			{{user_profile.location}} <br/>
-			{% if user_profile.picture %}
-				<img src="{{user_profile.picture.url}}"/>
-			{% endif %}
+		{{user_profile.location}} <br/>
+		{% if user_profile.picture %}
+			<img style="height:auto; width:auto; max-height:50%; max-width:100%;" id ="profPic" src="{{user_profile.picture.url}}"/>
 		{% endif %}
-	</body>
-
-</html>
+	{% endif %}
+{% endblock %}
