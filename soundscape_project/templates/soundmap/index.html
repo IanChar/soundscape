@@ -2,9 +2,12 @@
 
 {% load static %}
 
+{% load dajaxice_templatetags %}
+
 {% block title %} Soundscape {% endblock %}
 
 {% block head_block %} 
+		{% dajaxice_js_import %}
 		<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
         <script src="{% static "jquery-1.11.1.js" %}"></script>
 	    <script src="{% static "sensitiveInfo.js" %}"></script>
@@ -42,7 +45,7 @@
 
 		<button onclick="enablePlacing()">Place a marker</button>
 	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <button onclick="test()">Test</button>
+	    <button onclick="Dajaxice.soundmap.getMarkerInfo(populate);">Populate</button>
 	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 	<script src="{% static "soundmap-ajax.js" %}"></script>

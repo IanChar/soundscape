@@ -5,6 +5,11 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+#Dajax stuff
+from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+dajaxice_autodiscover()
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'soundscape_project.views.home', name='home'),
@@ -14,6 +19,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^soundmap/', include('soundmap.urls')),
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'^admin/', include(admin.site.urls)),
 	)
 
@@ -23,3 +29,5 @@ if settings.DEBUG:
         (r'media/(?P<path>.*)',
         'serve',
         {'document_root': settings.MEDIA_ROOT}), )
+
+urlpatterns += staticfiles_urlpatterns()
