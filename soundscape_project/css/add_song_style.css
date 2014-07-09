@@ -1,0 +1,20 @@
+#container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#form{
+    padding-left: 2em;
+    width:70%;
+    height:55em;
+    position: static;
+    display: inline-block;
+    float:left;
+}
+#songTable {
+    padding-top: 2em;
+    position: static;
+    height: 55em;
+    border: 0.5em solid #1487a7;
+    float: right;
+}

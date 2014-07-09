@@ -1,0 +1,50 @@
+body {
+
+	font-family: "Helvetica", sans-serif;
+	background-color: #10bb5f;
+}
+
+.brand {
+
+	font-size: 50px;
+	color: #34c376;
+	text-align: left:;
+}
+
+#header {
+	background-color:#FFFFFF;
+	position: static;
+	display: block;
+	border: 0.41em solid #1487a7;
+	margin-bottom: 1em;
+	margin-left: 3.5%;
+	padding-left: 2em;
+	z-index: 2;
+}
+
+#message {
+	color :#34c376;
+	font-size: 22px;
+}
+
+#content {
+	position: static;
+	margin-left: 3.5%;
+	background-color: #FFFFFF;
+	border-bottom: thick solid #628484;
+	padding-left: 0;
+	padding-right: 0;
+
+}
+
+footer {
+	margin-top: 2em;
+	position: static;
+	float: clear;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+#info {
+	float: clear;
+}
