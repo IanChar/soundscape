@@ -84,15 +84,6 @@ function initialize() {
 	    map.setCenter(initialLocation);
 	  }
 
-	//******************SAMPLE MARKERS*************************
-	canPlaceMarker = true;
-	placeMarker(new google.maps.LatLng(42, -71));
-	canPlaceMarker = true;
-	placeMarker(new google.maps.LatLng(35,136), "Joe Hisaishi", "The Path of the Wind", "https://soundcloud.com/nguyenrom/the-path-of-the-wind-totoro");
-	canPlaceMarker = true;
-	placeMarker(new google.maps.LatLng(10, 20), "2Pac", "Changes", "https://soundcloud.com/ghetto-records-2/2pac-changes");
-
-
 	//****************LISTENERS*********************************
 	google.maps.event.addListener(map, 'click', function(event) {
 	   placeMarker(event.latLng);
@@ -183,9 +174,26 @@ var playMusic = function(songUrl) {
 //***********************AJAX STUFF*******************
 
 function populate(data) {
-	var place = new google.maps.LatLng(data.lat,data.lng);
+	var place1 = new google.maps.LatLng(data.m1.lat,data.m1.lng);
+	var place2 = new google.maps.LatLng(data.m2.lat,data.m2.lng);
+	var place3 = new google.maps.LatLng(data.m3.lat,data.m3.lng);
+	var place4 = new google.maps.LatLng(data.m4.lat,data.m4.lng);
+	var place5 = new google.maps.LatLng(data.m5.lat,data.m5.lng);
+	
 	enablePlacing();
-	placeMarker(place, data.artist)
+	placeMarker(place1, data.m1.artist, data.m1.title, data.m1.url)
+
+	enablePlacing();
+	placeMarker(place2, data.m2.artist, data.m2.title, data.m2.url)
+
+	enablePlacing();
+	placeMarker(place3, data.m3.artist, data.m3.title, data.m3.url)
+
+	enablePlacing();
+	placeMarker(place4, data.m4.artist, data.m4.title, data.m4.url)
+
+	enablePlacing();
+	placeMarker(place5, data.m5.artist, data.m5.title, data.m5.url)
 }
 
 //********************INITIALIZE THE MAP*********************
