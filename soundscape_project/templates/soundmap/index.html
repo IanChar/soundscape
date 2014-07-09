@@ -27,7 +27,7 @@
 	    	{% if song_list %}
 	    		<ul>
 	    			{% for song in song_list %}
-	    			<li>{{song.name}} -- {{song.artist}}</li>
+	    			<li><a onclick = "playMusic('{{song.url}}')" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
 	    			{% endfor %}
 	    		</ul>
 	    	{% else %}
@@ -48,4 +48,6 @@
 	    <button onclick="Dajaxice.soundmap.getMarkerInfo(populate);">Populate</button>
 	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
+	<script src="{% static "soundmap-ajax.js" %}"></script>
+
 {% endblock %}
