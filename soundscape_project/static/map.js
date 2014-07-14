@@ -171,29 +171,13 @@ var playMusic = function(songUrl) {
   			 document.getElementById("soundcloudPlayer"));
 }
 
-//***********************AJAX STUFF*******************
+//***********************AJAX*******************
 
-function populate(data) {
-	var place1 = new google.maps.LatLng(data.m1.lat,data.m1.lng);
-	var place2 = new google.maps.LatLng(data.m2.lat,data.m2.lng);
-	var place3 = new google.maps.LatLng(data.m3.lat,data.m3.lng);
-	var place4 = new google.maps.LatLng(data.m4.lat,data.m4.lng);
-	var place5 = new google.maps.LatLng(data.m5.lat,data.m5.lng);
-	
+function populate(song) {
+	var coordinates = new google.maps.LatLng(song.lat, song.lng);
 	enablePlacing();
-	placeMarker(place1, data.m1.artist, data.m1.title, data.m1.url)
-
-	enablePlacing();
-	placeMarker(place2, data.m2.artist, data.m2.title, data.m2.url)
-
-	enablePlacing();
-	placeMarker(place3, data.m3.artist, data.m3.title, data.m3.url)
-
-	enablePlacing();
-	placeMarker(place4, data.m4.artist, data.m4.title, data.m4.url)
-
-	enablePlacing();
-	placeMarker(place5, data.m5.artist, data.m5.title, data.m5.url)
+	placeMarker(coordinates, song.artist, song.name, song.url)
+	console.log('success');
 }
 
 //********************INITIALIZE THE MAP*********************

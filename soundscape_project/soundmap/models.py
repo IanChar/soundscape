@@ -23,7 +23,3 @@ class UserProfile(models.Model):
 	def __unicode__(self):
 		return self.user.username
 
-#class SoundcloudProfile(models.Model):
-#	soundcloud_user = models.OneToOneField(UserProfile)
-#	soundcloud_username = models.CharField(max_length=128)
-#	soundcloud_password = models.CharField(max_length=128)

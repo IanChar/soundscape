@@ -15,6 +15,17 @@
 	      src="https://maps.googleapis.com/maps/api/js?key=".concat(mapKey)>
 	    </script>
 	    <script src="http://connect.soundcloud.com/sdk.js"></script>
+	    <script type="text/javascript">
+	    	function my_callback(data) {
+	    		var key;
+	    		for(key in data) {
+	    			var song = data[key];
+	    			console.log(song.artist);
+	    			console.log(song.name);
+	    			populate(song);
+	    		}
+	    	}
+	    </script>
  {% endblock %}
 
 
@@ -45,8 +56,7 @@
 
 		<button onclick="enablePlacing()">Place a marker</button>
 	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <button onclick="Dajaxice.soundmap.getMarkerInfo(populate);">Populate</button>
-	<script type="text/javascript" src="{% static "soundCloudMain.js" %}"></script>
+	    <button onclick="Dajaxice.soundmap.getMarkerInfo(my_callback);">Populate</button>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 	<script src="{% static "soundmap-ajax.js" %}"></script>
 
