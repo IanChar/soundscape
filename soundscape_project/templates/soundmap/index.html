@@ -23,6 +23,9 @@
 	    			populate_map(song);
 	    		}
 	    	}
+	    	jQuery(document).ready(function ($) {
+	    		Dajaxice.soundmap.getMarkerInfo(populate_map_helper);
+	    	});
 	    </script>
  {% endblock %}
 
@@ -54,7 +57,7 @@
 
 		<button onclick="enablePlacing()">Place a marker</button>
 	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <button onclick="Dajaxice.soundmap.getMarkerInfo(populate_map_helper);">Populate</button>
+	    <!-- <button onclick="Dajaxice.soundmap.getMarkerInfo(populate_map_helper);">Populate</button> -->
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 	<script src="{% static "soundmap-ajax.js" %}"></script>
 
