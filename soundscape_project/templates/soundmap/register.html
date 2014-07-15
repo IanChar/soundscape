@@ -11,7 +11,7 @@
 		}
 		#registration_form {
 			padding-left: 2em;
-			height:30em;
+			height:32em;
 		}
 	</style>
 {% endblock %}
@@ -30,16 +30,20 @@
 			<h1>Register here!</h1>
 			{% for field in user_form.visible_fields %}
 				{{field.errors}}
-				{{field.help_text}} <br/>
-				{{field}} <br/>
+				<label>{{field.help_text}} </label><br/>
+				<input class="form-control" name ='{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder = '{{field.label}}'><br/>
 			{% endfor %}
 			{% for field in profile_form.visible_fields %}
 				{{field.errors}}
-				{{field.help_text}} <br/>
-				{{field}} <br/>
+				<label>{{field.help_text}} </label><br/>
+				{% if field.field.widget.input_type == "file" %}
+					<input name = '{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder='{{field.label}}'><br/>
+				{% else %}
+					<input class="form-control" name = '{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder='{{field.label}}'><br/>
+				{% endif %}
 			{% endfor %}
 
-			</br>
+
 			<input class="btn btn-primary" type = "submit" name="submit" value = "Register"/>
 		</form>
 		{% endif %}
