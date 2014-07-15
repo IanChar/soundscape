@@ -27,7 +27,7 @@ def makePretty(url):
 def getMarkerInfo(request):
 	song_list = Song.objects.order_by('-likes')[:10]
 	count =1
-	json = {}
+	song_db = {}
 	for song in song_list:
 		marker = {}
 		marker['artist'] = song.artist
@@ -37,7 +37,7 @@ def getMarkerInfo(request):
 		marker['url'] = song.url
 		marker['likes'] = song.likes
 		marker['listens'] = song.listens
-		json['song'+str(count)] = marker
+		song_db['song'+str(count)] = marker
 		count +=1
 	# sampleUrl = "https://soundcloud.com/shumbody/folds-in-your-hands/"
 	# marker1 = {'artist':"2PAC", 'title':"Changes", 'lat':10, 'lng':20, 'url':"https://soundcloud.com/ghetto-records-2/2pac-changes"}
@@ -45,4 +45,4 @@ def getMarkerInfo(request):
 	# marker3 = {'artist':"Passion Pit", 'title':"It's Time", 'lat':42, 'lng':-71, 'url':"https://soundcloud.com/imaginedragons/imagine-dragons-its-time-2"}
 	# marker4 = {'artist':findArtist(sampleUrl), 'title':findTitle(sampleUrl), 'lat':37, 'lng':-120, 'url':sampleUrl}
 	# marker5 = {'artist':"Teriyaki Boyz", 'title':"Tokyo Drift", 'lat':35, 'lng':136, 'url':"https://soundcloud.com/jdm-music-2/teriyaki-boyz-tokyo-drift"}
-	return simplejson.dumps(json)
+	return simplejson.dumps(song_db)

@@ -122,19 +122,14 @@ def profile(request, profile_username):
 	context_dict={}
 
 	u = User.objects.get(username = profile_username)
-	if u:
-		context['user']=u
-		try:
-			profile = UserProfile.objects.get(user=u)
-			context['user_profile']=profile
+	try:
+		context_dict['user']=u
+		profile = UserProfile.objects.get(user=u)
+		context_dict['user_profile']=profile
 
-		except UserProfile.DoesNotExist:
-			pass
+	except UserProfile.DoesNotExist:
+		pass
 	return render_to_response('soundmap/profile.html', context_dict, context)
-
-@login_required
-def restricted(request):
-	return HttpResponse("Since you are logged in, you can see this text")
 
 @login_required
 def user_logout(request):

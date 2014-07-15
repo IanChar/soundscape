@@ -173,11 +173,10 @@ var playMusic = function(songUrl) {
 
 //***********************AJAX*******************
 
-function populate(song) {
+function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
 	enablePlacing();
 	placeMarker(coordinates, song.artist, song.name, song.url)
-	console.log('success');
 }
 
 //********************INITIALIZE THE MAP*********************
