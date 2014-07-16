@@ -16,16 +16,16 @@ class SongForm(forms.ModelForm):
 		fields = ('name', 'artist', 'url', 'listens', 'likes', 'latitude', 'longitude')
 
 class UserForm(forms.ModelForm):
-	username= forms.CharField(label="username", help_text="Please enter your username.")
-	password = forms.CharField(label="password", help_text="Please enter your password.", widget=forms.PasswordInput())
+	username= forms.CharField(label="username", help_text="Please enter your username")
+	password = forms.CharField(label="password", help_text="Please enter your password", widget=forms.PasswordInput())
 
 	class Meta:
 		model = User
 		fields = ('username', 'password')
 
 class UserProfileForm(forms.ModelForm):
-	location = forms.CharField(label="location", help_text="Please enter your location.", required=False)
-	picture = forms.ImageField(label="picture", help_text="Select a profile image to upload.", required=False)
+	location = forms.CharField(label="location", help_text="Please enter your location", required=False)
+	picture = forms.ImageField(label="picture", help_text="Select a profile image to upload", required=False)
 
 	class Meta:
 		model = UserProfile
