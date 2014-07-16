@@ -19,25 +19,30 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-default navbar-static-top">
 				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle-"collapse" data-target="#navbar-collapse">
+					<div class="navbar-header" id="header">
+						<button type="button" class="navbar-toggle" data-toggle-"collapse" data-target="#navbar-collapse-1">
 							<span class="sr-only"> Toggle Navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-				  		<a class = "navbar-brand" href="#"> Soundscape </a>
+				  		<a href="/soundmap/" id="brand"> Soundscape </a></br>
+				  		{% if user.is_authenticated%}
+				  			<p class="navbar-text"> Hello {{user.username}}! <span>
+				  		{% else %}
+				  			<p class="navbar-text"> Welcome to Soundscape! <span>
+				  		{% endif %}
 		   			</div>
-				  		<div id = "message">
+		   			<div class="collapse navbar-collapse" id = "navbar-collapse-1">
+				  		<ul class="nav navbar-nav navbar-right" id="right-menu">
 				  			{% if user.is_authenticated %}
-					        <h3>Welcome, {{ user.username }}!</h3>
-					        <a href="/soundmap/logout/">Logout</a>
+					        	<li class="user-control"><form action="/soundmap/logout/"><input class="btn btn-default navbar-btn" type="submit" value = "Logout"></form></li>
 					       	{% else %}
-					       	<h3>Welcome to Soundscape!</h3>
-					        <a href="/soundmap/register/">Register</a>
-					        <a href="/soundmap/login/">Login</a>
+						       	<li class="user-control"><form action="/soundmap/register"><input class="btn btn-success navbar-btn" type="submit" value="Register"></form></li>
+						        <li class="user-control"><form action="/soundmap/login/"><input class="btn btn-primary navbar-btn" type="submit" value="Login"></form></li>
 					       	{% endif %}
-						</div>
+						</ul>
+					</div>
 		   		</div>
 		  	</nav>
 

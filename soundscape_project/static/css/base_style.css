@@ -1,25 +1,25 @@
 body {
-
 	font-family: "Helvetica", sans-serif;
 	background-color: #10bb5f;
 }
 
-.brand {
-
+#brand {
 	font-size: 50px;
 	color: #34c376;
-	text-align: left:;
+	padding: 0;
+	text-decoration: none;
+}
+.navbar-text {
+	margin-left: 2px;
+	font-size:16px;
+}
+.container-fluid {
+	padding: 0;
 }
 
 #header {
-	background-color:#FFFFFF;
-	position: static;
 	display: block;
-	border: 0.41em solid #1487a7;
-	margin-bottom: 1em;
-	margin-left: 3.5%;
-	padding-left: 2em;
-	z-index: 2;
+	margin-left: 4.167%;
 }
 
 #message {
@@ -29,12 +29,36 @@ body {
 
 #content {
 	position: static;
-	margin-left: 3.5%;
+	margin-left: 4.167%;
 	background-color: #FFFFFF;
 	border-bottom: thick solid #628484;
 	padding-left: 0;
 	padding-right: 0;
 
+}
+
+#info {
+	float: clear;
+}
+#navbar-collapse-1 {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+#right-menu {
+	position: absolute;
+	margin-right: 4.167%;
+	text-align: center;
+	height: 100%;
+	text-align: center;
+	right: 0;
+}
+
+.user-control {
+	padding-left: 2em;
+ 	top: 50%;
+ 	transform: translateY(50px);
 }
 
 footer {
@@ -45,6 +69,4 @@ footer {
 	color: #FFFFFF;
 }
 
-#info {
-	float: clear;
-}
+

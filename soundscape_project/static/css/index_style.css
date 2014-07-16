@@ -6,6 +6,7 @@ aside > a {
 	position: static;
 	height: 55em;
 	float: left;
+	padding: 0;
 }
 
 #songTable {
