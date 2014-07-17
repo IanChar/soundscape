@@ -17,23 +17,26 @@
 
 	<body>
 		<div class="container-fluid">
-			<nav class="navbar navbar-default navbar-static-top">
+			<nav class="navbar navbar-default navbar-static-top" id="navigation">
 				<div class="container-fluid">
-					<div class="navbar-header" id="header">
+					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle-"collapse" data-target="#navbar-collapse-1">
 							<span class="sr-only"> Toggle Navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-				  		<a href="/soundmap/" id="brand"> Soundscape </a></br>
-				  		{% if user.is_authenticated%}
-				  			<p class="navbar-text"> Hello {{user.username}}! <span>
-				  		{% else %}
-				  			<p class="navbar-text"> Welcome to Soundscape! <span>
-				  		{% endif %}
+				  		
 		   			</div>
 		   			<div class="collapse navbar-collapse" id = "navbar-collapse-1">
+		   				<ul class="nav navbar-nav" id="header">
+		   					<a href="/soundmap/" id="brand">Soundscape</a>
+					  		{% if user.is_authenticated%}
+					  			<p class="navbar-text"> Hello {{user.username}}! </p>
+					  		{% else %}
+					  			<p class="navbar-text"> Welcome to Soundscape! </p>
+					  		{% endif %}
+		   				</ul>
 				  		<ul class="nav navbar-nav navbar-right" id="right-menu">
 				  			{% if user.is_authenticated %}
 					        	<li class="user-control"><form action="/soundmap/logout/"><input class="btn btn-default navbar-btn" type="submit" value = "Logout"></form></li>

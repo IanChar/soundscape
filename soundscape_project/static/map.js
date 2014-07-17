@@ -2,7 +2,7 @@
 //***********************MAP STUFF****************************
 var map;
 var currentLocation;
-var browserSupportFlag = new Boolean();
+var browserSupportFlag = false;
 var canPlaceMarker = false;
 var markers = [];
 var infoWindows = [];
@@ -16,8 +16,8 @@ function initialize() {
 	      featureType: "water",
 	      elementType: "all",
 	      stylers: [
-	      	{hue: "#000000"},
-	      	{saturation: -100},
+	      	{hue: "#1487a7"},
+	      	{saturation: -10},
 	      	{lightness: 0}
 	      ]
 	    },{
@@ -25,7 +25,7 @@ function initialize() {
 	      elementType: "geometry",
 	      stylers: [
 	      	{hue: "#00FF00"},
-	      	{saturation: 100},
+	      	{saturation: 50},
 	        { visibility: "simplified" }
 	      ]
 	    },{
@@ -75,7 +75,7 @@ function initialize() {
 
 	  function handleNoGeolocation(errorFlag) {
 	    if (errorFlag == true) {
-	      alert("Geolocation service failed.");
+	      alert("Geolocation service failed. Default location set.");
 	      initialLocation = newyork;
 	    } else {
 	      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
@@ -159,8 +159,12 @@ var enablePlacing = function() {
 }
 
 var placeCurrentLocationMarker = function() {
-	canPlaceMarker = true;
+	enablePlacing();
+	$.get('/soundmap/add_song', {lat:currentLocation.lat(), lng:currentLocation.lng()}, function(data) {
+		$('#songTable').hide();
+	});
 	placeMarker(currentLocation);
+
 }
 
 

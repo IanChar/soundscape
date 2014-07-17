@@ -1,5 +1,6 @@
-aside > a {
-	margin-left: 1em;
+li > a {
+	color: #000000;
+	text-decoration: none;
 }
 
 #mapContainer {
@@ -10,6 +11,7 @@ aside > a {
 }
 
 #songTable {
+
 	position: relative;
 	padding-top: 2em;
 	height: 55em;

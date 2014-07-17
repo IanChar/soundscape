@@ -2,27 +2,6 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from soundmap.models import Song
 
-def findArtist(url):
-	stop = len(url)
-	for i in range(23, len(url)):
-		if url[i] == '/':
-			stop = i
-			break
-	return makePretty(url[23:stop])
-
-def findTitle(url):
-	start = 0
-	for i in range(len(url) - 2, 0, -1):
-		if url[i] == '/':
-			start = i
-			break
-	return makePretty(url[start + 1:len(url) - 1])
-
-def makePretty(url):
-	url = url.replace('-', ' ')
-	url = url.title()
-	return url
-
 @dajaxice_register
 def getMarkerInfo(request):
 	song_list = Song.objects.order_by('-likes')[:15]
