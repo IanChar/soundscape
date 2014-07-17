@@ -15,6 +15,8 @@ body {
 }
 .navbar-text {
 	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	font-size:16px;
 }
 .container-fluid {
