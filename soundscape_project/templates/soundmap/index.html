@@ -7,7 +7,6 @@
 {% block head_block %} 
 		{% dajaxice_js_import %}
 		<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
-        <script src="{% static "jquery-1.11.1.js" %}"></script>
 	    <script src="{% static "sensitiveInfo.js" %}"></script>
 	    <script type="text/javascript"
 	      src="https://maps.googleapis.com/maps/api/js?key=".concat(mapKey)>
@@ -30,32 +29,32 @@
 
 {% block body_block %}
 
-	    <div class = "col-md-9" id="mapContainer"></div>
+    <div class = "col-md-9" id="mapContainer"></div>
 
-	    <div class = "col-md-3" id="songTable">
-	    	{% block side_block %}
-	    	{% if song_list %}
-	    		<ul>
-	    			{% for song in song_list %}
-	    			<li><a onclick = "playMusic('{{song.url}}')" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
-	    			{% endfor %}
-	    		</ul>
-	    	{% else %}
-		    	<ul>
-		    		<li> No songs to play at this time </li>
-		    	</ul>
-		    {% endif %}
-		    <a href = "/soundmap/add_song/">Add a new song</a>
-			{% endblock %}
-			
-		    <div id="soundcloudPlayer">
-		    	<p>Click on a marker to hear a song!</p>
-		    </div>
+    <div class = "col-md-3" id="songTable">
+    	{% block side_block %}
+    	{% if song_list %}
+    		<ul>
+    			{% for song in song_list %}
+    			<li><a onclick = "playMusic('{{song.url}}')" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
+    			{% endfor %}
+    		</ul>
+    	{% else %}
+	    	<ul>
+	    		<li> No songs to play at this time </li>
+	    	</ul>
+	    {% endif %}
+	    <a href = "/soundmap/add_song/">Add a new song</a>
+		{% endblock %}
+		
+	    <div id="soundcloudPlayer">
+	    	<p>Click on a marker to hear a song!</p>
 	    </div>
+    </div>
 
-		<button onclick="enablePlacing()">Place a marker</button>
-	    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
-	    <!-- <button onclick="Dajaxice.soundmap.getMarkerInfo(populate_map_helper);">Populate</button> -->
+	<button onclick="enablePlacing()">Place a marker</button>
+    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
+    <!-- <button onclick="Dajaxice.soundmap.getMarkerInfo(populate_map_helper);">Populate</button> -->
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 	<script src="{% static "soundmap-ajax.js" %}"></script>
 

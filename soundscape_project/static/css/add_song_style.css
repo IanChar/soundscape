@@ -18,3 +18,7 @@
     border: 0.5em solid #1487a7;
     float: right;
 }
+
+.form-control {
+    width:40%;
+}

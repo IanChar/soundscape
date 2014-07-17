@@ -160,13 +160,13 @@ var enablePlacing = function() {
 
 var placeCurrentLocationMarker = function() {
 	enablePlacing();
-	$.get('/soundmap/add_song', {lat:currentLocation.lat(), lng:currentLocation.lng()}, function(data) {
-		$('#songTable').hide();
-	});
 	placeMarker(currentLocation);
-
 }
 
+function loadCoordinates() {
+	$('#id_latitude').attr('value', currentLocation.lat());
+	$('#id_longitude').attr('value', currentLocation.lng());
+}
 
 var playMusic = function(songUrl) {
 	  SC.oEmbed(songUrl,

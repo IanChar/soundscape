@@ -17,6 +17,7 @@ def index(request):
 
 def add_song(request):
 	context = RequestContext(request)
+	context_dict={}
 
 	if request.method=='POST':
 		form = SongForm(request.POST)
@@ -34,7 +35,8 @@ def add_song(request):
 	else:
 		form = SongForm()
 
-	return render_to_response('soundmap/add_song.html', {'form': form}, context)
+	context_dict['form'] = form
+	return render_to_response('soundmap/add_song.html', context_dict, context)
 
 def register(request):
     context = RequestContext(request)

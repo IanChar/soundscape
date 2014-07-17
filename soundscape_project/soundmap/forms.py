@@ -3,9 +3,9 @@ from soundmap.models import UserProfile, Song
 from django.contrib.auth.models import User
 
 class SongForm(forms.ModelForm):
-	name = forms.CharField(max_length=128, help_text="Please enter the song name.")
-	artist = forms.CharField(max_length=128, help_text="Please enter the artist name.")
-	url = forms.URLField(max_length=200, help_text="Please enter the URL of the Soundcloud file, if available.", required=False)
+	name = forms.CharField(max_length=128, help_text="Please enter the song name")
+	artist = forms.CharField(max_length=128, help_text="Please enter the artist name")
+	url = forms.URLField(max_length=200, help_text="Please enter the URL of the Soundcloud file, if available", required=False)
 	listens = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 	likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 	latitude = forms.FloatField(widget=forms.HiddenInput(), initial=0)
