@@ -19,15 +19,16 @@ def index(request):
 
 def get_location(request):
 	context = RequestContext(request)
-	latitude = None
-	longitude = None
+	print "hi"
+	latitude = 10
+	longitude = 10
 	name=None
 	if request.method == 'POST':
 		name = request.POST['name']
 		artist = request.POST['artist']
 		url = request.POST['url']
-		latitude = request.POST['lat']
-		longitude = request.POST['lng']
+		# latitude = request.POST['lat']
+		# longitude = request.POST['lng']
 		new_song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=0, likes=0, latitude=latitude, longitude=longitude)[0]
 	
 	return HttpResponse(name);

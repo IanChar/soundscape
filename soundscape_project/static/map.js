@@ -163,9 +163,6 @@ function placeArbitraryMarker () {
 }
 function placeCurrentLocationMarker() {
 	enablePlacing();
-	$.get('soundmap/add_song', {lat:currentLocation.lat(), lng:currentLocation.lng()}, function (data) {
-		document.location.href=data;
-	});
 	placeMarker(currentLocation);
 }
 
