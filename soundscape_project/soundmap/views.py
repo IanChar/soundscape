@@ -17,18 +17,17 @@ def index(request):
 
 	return render_to_response('soundmap/index.html', context_dict, context)
 
-def get_location(request):
+def get_location_add_song(request):
 	context = RequestContext(request)
-	print "hi"
 	latitude = 10
 	longitude = 10
 	name=None
-	if request.method == 'POST':
-		name = request.POST['name']
-		artist = request.POST['artist']
-		url = request.POST['url']
-		# latitude = request.POST['lat']
-		# longitude = request.POST['lng']
+	if request.method == 'GET':
+		name = request.GET['name']
+		artist = request.GET['artist']
+		url = request.GET['url']
+		# latitude = request.GET['lat']
+		# longitude = request.GET['lng']
 		new_song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=0, likes=0, latitude=latitude, longitude=longitude)[0]
 	
 	return HttpResponse(name);

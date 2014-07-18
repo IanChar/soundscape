@@ -38,7 +38,6 @@ $(function() {
 		}
 	}
 	function addSong() {
-		alert("hi");
 		var valid = true;
 		allFields.removeClass("ui-state-error");
 		valid = valid && checkLength(name, "name", 1, 128);
@@ -48,8 +47,8 @@ $(function() {
 		if(valid) {
 			$("#playlist").append("<li>"+name.val()+" -- "+artist.val()+"</li>");
 			$.ajax({
-				type: "POST",
-				url: "/soundmap/get_location/",
+				type: "GET",
+				url: "/soundmap/get_location_add_song/",
 				data: {name: name.val(), artist: artist.val(), url: url.val()},
 				success: function success(data) {
 					alert(data.name);
