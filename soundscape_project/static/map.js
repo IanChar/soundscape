@@ -76,12 +76,12 @@ function initialize() {
 	  function handleNoGeolocation(errorFlag) {
 	    if (errorFlag == true) {
 	      alert("Geolocation service failed. Default location set.");
-	      initialLocation = newyork;
+	      currentLocation = newyork;
 	    } else {
 	      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-	      initialLocation = siberia;
+	      currentLocation = siberia;
 	    }
-	    map.setCenter(initialLocation);
+	    map.setCenter(currentLocation);
 	  }
 
 	//****************LISTENERS*********************************
@@ -157,15 +157,16 @@ function placeMarker(location, name, songName, songUrl){
 var enablePlacing = function() {
 	canPlaceMarker = true;
 }
-
-var placeCurrentLocationMarker = function() {
+function placeArbitraryMarker () {
 	enablePlacing();
-	placeMarker(currentLocation);
-}
 
-function loadCoordinates() {
-	$('#id_latitude').attr('value', currentLocation.lat());
-	$('#id_longitude').attr('value', currentLocation.lng());
+}
+function placeCurrentLocationMarker() {
+	enablePlacing();
+	$.get('soundmap/add_song', {lat:currentLocation.lat(), lng:currentLocation.lng()}, function (data) {
+		document.location.href=data;
+	});
+	placeMarker(currentLocation);
 }
 
 var playMusic = function(songUrl) {
@@ -179,6 +180,7 @@ var playMusic = function(songUrl) {
 
 function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
+	alert(song.lat);
 	enablePlacing();
 	placeMarker(coordinates, song.artist, song.name, song.url)
 }
