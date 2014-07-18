@@ -55,9 +55,9 @@
     </div>
 
     <div id="dialog-form" title="Add a Song">
-    	<p class="validateTips"> All form fields are required. </p>
+    	<fieldset>
+    	<span class="validateTips"> All form fields are required. </span>
             <form id="song_form" method="post" action="/soundmap/add_song/">
-
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -66,11 +66,12 @@
                 {% for field in form.visible_fields %}
                     {{ field.errors }} </br>
                     <label> {{ field.help_text }} </label>
-                    <input id="{{field.name}}" class="text ui-widget-content ui-corner-all" type="{{field.field.widget.input_type}}" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
+                    <input id="{{field.name}}" class="form-control text ui-widget-content" type="{{field.field.widget.input_type}}" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
                 {% endfor %}
                 </br>
-                <input type="submit" tabindex="-1" />
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" />
             </form>
+        </fieldset>
 	</div>
 	<button id="addsong">Place a marker</button>
     <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>

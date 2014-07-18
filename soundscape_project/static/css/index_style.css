@@ -41,9 +41,8 @@ input.text {
 }
 
 fieldset {
-	padding:0;
+	padding:1em;
 	border: 0;
-	margin-top:25px;
 }
 
 .validateTips {
