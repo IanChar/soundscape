@@ -157,15 +157,16 @@ function placeMarker(location, name, songName, songUrl){
 var enablePlacing = function() {
 	canPlaceMarker = true;
 }
-function placeArbitraryMarker () {
-	enablePlacing();
 
+function createMarker() {
+	$.ajax({
+		type: "GET",
+		url: "/soundmap/get_location_add_song/",
+		data: {name:newName, artist:newArtist, url:newUrl, latitude:currentLocation.lat(), longitude:currentLocation.lng()},
+		success: function success(data) {
+		},
+	});
 }
-function placeCurrentLocationMarker() {
-	enablePlacing();
-	placeMarker(currentLocation);
-}
-
 var playMusic = function(songUrl) {
 	  SC.oEmbed(songUrl,
   			{color: "ff0066",
@@ -177,7 +178,6 @@ var playMusic = function(songUrl) {
 
 function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
-	alert(song.lat);
 	enablePlacing();
 	placeMarker(coordinates, song.artist, song.name, song.url)
 }

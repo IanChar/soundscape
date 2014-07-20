@@ -19,7 +19,7 @@
 
 	<body>
 		<div class="container-fluid">
-			<nav class="navbar navbar-default navbar-static-top" id="navigation">
+			<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle-"collapse" data-target="#navbar-collapse-1">
@@ -36,7 +36,7 @@
 					  		{% if user.is_authenticated%}
 					  			<p class="navbar-text"> Hello {{user.username}}! </p>
 					  		{% else %}
-					  			<p class="navbar-text"> Welcome to Soundscape! </p>
+					  			<p class="navbar-text"> The World's Only Interactive Sound Map! </p>
 					  		{% endif %}
 		   				</ul>
 				  		<ul class="nav navbar-nav navbar-right" id="right-menu">

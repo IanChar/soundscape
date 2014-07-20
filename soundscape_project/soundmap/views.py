@@ -26,8 +26,8 @@ def get_location_add_song(request):
 		name = request.GET['name']
 		artist = request.GET['artist']
 		url = request.GET['url']
-		# latitude = request.GET['lat']
-		# longitude = request.GET['lng']
+		latitude = request.GET['latitude']
+		longitude = request.GET['longitude']
 		new_song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=0, likes=0, latitude=latitude, longitude=longitude)[0]
 	
 	return HttpResponse(name);

@@ -43,18 +43,12 @@ $(function() {
 		valid = valid && checkLength(name, "name", 1, 128);
 		valid = valid && checkLength(artist, "artist", 1, 128);
 		valid = valid && checkLength(url, "url", 1, 200);
-
-		if(valid) {
-			$("#playlist").append("<li>"+name.val()+" -- "+artist.val()+"</li>");
-			$.ajax({
-				type: "GET",
-				url: "/soundmap/get_location_add_song/",
-				data: {name: name.val(), artist: artist.val(), url: url.val()},
-				success: function success(data) {
-					alert(data.name);
-				},
-			});
-			dialog.dialog("close");
+		if(valid) {	
+			newName=name.val();
+			newArtist=artist.val();
+			newUrl=url.val();
+			createMarker();
+			dialog.dialog('close');
 		}
 		return valid;
 	}
@@ -84,4 +78,5 @@ $(function() {
 	$('#addsong').button().on("click", function() {
 		dialog.dialog("open");
 	});
+
 });

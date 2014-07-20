@@ -23,7 +23,9 @@
     	});
     </script>
     <script type="text/javascript">
-    	var currentLocation;
+    	var newName;
+    	var newArtist;
+    	var newUrl;
     </script>
     <script src="{% static 'modal_form.js' %}"></script>
  {% endblock %}
@@ -74,7 +76,6 @@
         </fieldset>
 	</div>
 	<button id="addsong">Place a marker</button>
-    <button onclick="placeCurrentLocationMarker()">Place a marker at current location</button>
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 
 {% endblock %}
