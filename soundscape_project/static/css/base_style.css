@@ -1,5 +1,5 @@
 body {
-	font-family: "Helvetica", sans-serif;
+	font-family: 'Overlock', cursive;
 	background-color: #10bb5f;
 }
 
@@ -11,7 +11,8 @@ body {
 #brand {
 	padding: 0;
 	margin-top: -5px;
-	font-size: 40px;
+	font-family: 'Yellowtail', cursive;
+	font-size: 50px;
 	color: #34c376;
 	text-decoration: none;
 }
