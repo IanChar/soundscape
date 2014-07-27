@@ -1,10 +1,10 @@
 body {
 	font-family: 'Open Sans', cursive;
-	background-color: #10bb5f;
+	background-color: #fefcf3;
 }
 
 #navigation {
-	background: rgba(240, 240, 240, 0.75);
+	background: rgba(94, 94, 94, 0.75);
 }
 
 
@@ -13,7 +13,7 @@ body {
 	margin-top: -5px;
 	font-family: 'Yellowtail', cursive;
 	font-size: 50px;
-	color: #34c376;
+	color: #8e001c;
 	text-decoration: none;
 }
 .navbar-text {
@@ -21,6 +21,7 @@ body {
 	margin-top: -5px;
 	margin-bottom: 5px;
 	font-size:16px;
+	color: 
 }
 .container-fluid {
 	padding: 0;
@@ -32,17 +33,12 @@ body {
 	margin-left: 4.167%;	/*1/24 of the total width on each side since the content takes up 11/12*/
 }
 
-#message {
-	color :#34c376;
-	font-size: 22px;
-}
 
 #content {
 	margin-top: 7em;
 	position: static;
 	margin-left: 4.167%;	/*1/24 of the total width on each side since the content takes up 11/12*/
-	background-color: #FFFFFF;
-	border-bottom: thick solid #628484;
+	background-color: #fefcf3;
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -72,11 +68,12 @@ body {
 }
 
 footer {
-	margin-top: 2em;
+	margin-top: 1em;
 	position: static;
 	float: clear;
 	text-align: center;
-	color: #FFFFFF;
+	color: #e7e8d1;
+	background-color: #5e5e5e;
 }
 
 

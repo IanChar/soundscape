@@ -5,7 +5,6 @@
 {% block head_block %}
 	<style>
 		#login {
-			padding-left: 2em;
 			height: 32em;
 		}
 		#login_form {
@@ -23,9 +22,9 @@
 			{% csrf_token %}
 
 			{% if bad_details %}
-				<p><font color="#FF0000"> Your username and/or password were incorrect. Please try again</font></p>
+				<p><font color="#8e001c"> Your username and/or password were incorrect. Please try again</font></p>
 			{% elif disabled_acct %}
-				<p><font color="#FF0000"> Your account has been disabled. </font></p>
+				<p><font color="#8e001c"> Your account has been disabled. </font></p>
 			{% endif %}
 			<label for="login_username">Username:</label>
 			<input class="form-control" type="text" name = "username" value="" size="50" placeholder="Username"/>

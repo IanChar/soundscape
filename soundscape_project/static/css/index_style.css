@@ -1,5 +1,5 @@
 li > a {
-	color: #000000;
+	color: #424242;
 	text-decoration: none;
 }
 
@@ -16,11 +16,11 @@ li > a {
 }
 
 #songTable {
-
+	background-color: #fbf7e4;
 	position: relative;
 	padding-top: 2em;
 	height: 55em;
-	border: 0.5em solid #1487a7;
+	border: 0.5em solid #424242;
 	float: right;
 }
 

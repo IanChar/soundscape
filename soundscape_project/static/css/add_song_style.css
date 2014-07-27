@@ -4,7 +4,6 @@
 }
 
 #form{
-    padding-left: 2em;
     width:70%;
     height:55em;
     position: static;
@@ -15,7 +14,7 @@
     padding-top: 2em;
     position: static;
     height: 55em;
-    border: 0.5em solid #1487a7;
+    border: 0.5em solid #424242;
     float: right;
 }
 
