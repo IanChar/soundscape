@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
     <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'geolocation_service.js' %}"></script>
     <script type="text/javascript">
     	function populate_map_helper(data) {
     		var key;
@@ -20,14 +21,13 @@
     	}
     	jQuery(document).ready(function ($) {
     		Dajaxice.soundmap.getMarkerInfo(populate_map_helper);
+    		loadCoordinates();
     	});
     </script>
-    <script type="text/javascript">
-    	var newName;
-    	var newArtist;
-    	var newUrl;
-    </script>
+
     <script src="{% static 'modal_form.js' %}"></script>
+
+
  {% endblock %}
 
 

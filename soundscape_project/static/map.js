@@ -158,15 +158,6 @@ var enablePlacing = function() {
 	canPlaceMarker = true;
 }
 
-function createMarker() {
-	$.ajax({
-		type: "GET",
-		url: "/soundmap/get_location_add_song/",
-		data: {name:newName, artist:newArtist, url:newUrl, latitude:currentLocation.lat(), longitude:currentLocation.lng()},
-		success: function success(data) {
-		},
-	});
-}
 var playMusic = function(songUrl) {
 	  SC.oEmbed(songUrl,
   			{color: "ff0066",

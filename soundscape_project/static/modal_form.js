@@ -44,10 +44,7 @@ $(function() {
 		valid = valid && checkLength(artist, "artist", 1, 128);
 		valid = valid && checkLength(url, "url", 1, 200);
 		if(valid) {	
-			newName=name.val();
-			newArtist=artist.val();
-			newUrl=url.val();
-			createMarker();
+			document.getElementById('song_form').submit();
 			dialog.dialog('close');
 		}
 		return valid;

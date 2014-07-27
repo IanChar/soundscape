@@ -17,22 +17,6 @@ def index(request):
 
 	return render_to_response('soundmap/index.html', context_dict, context)
 
-def get_location_add_song(request):
-	context = RequestContext(request)
-	latitude = 10
-	longitude = 10
-	name=None
-	if request.method == 'GET':
-		name = request.GET['name']
-		artist = request.GET['artist']
-		url = request.GET['url']
-		latitude = request.GET['latitude']
-		longitude = request.GET['longitude']
-		new_song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=0, likes=0, latitude=latitude, longitude=longitude)[0]
-	
-	return HttpResponse(name);
-
-
 def add_song(request):
 	context = RequestContext(request)
 	context_dict={}
