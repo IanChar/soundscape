@@ -39,10 +39,10 @@ iframe {
 }
 
 /*CSS for JQuery UI dialog box*/
+
 input.text {
 	margin-bottom: 12px;
 	width: 95%;
-	padding: 0.4em;
 }
 
 fieldset {
@@ -52,5 +52,25 @@ fieldset {
 
 .validateTips {
 	border: 1px solid transparent;
-	padding: 0.3em;
+}
+
+.ui-dialog-titlebar {
+	padding: 0.3em 1em 0.3em 1em;
+}
+
+.ui-dialog-titlebar .ui-button {	/*The button in the titlebar*/
+	float: right;
+}
+.ui-dialog-content {		/*Gets rid of the border between content and button pane*/
+	border-bottom: 0px;
+}
+.ui-dialog-buttonpane{
+	border-top: 0px;
+	padding-bottom: 1em;
+}
+.ui-dialog-buttonset {		/*Buttons in the bottom bar*/
+	text-align: center;
+}
+.ui-dialog-buttonset .ui-button {
+	margin-right: 2em;
 }

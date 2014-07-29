@@ -5,6 +5,8 @@ $(function() {
 	artist = $( "#artist" ),
 	url = $( "#url" ),
 	
+	urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+
 	allFields = $([]).add(name).add(artist).add(url),
 	tips = $(".validateTips");
 
@@ -43,6 +45,7 @@ $(function() {
 		valid = valid && checkLength(name, "name", 1, 128);
 		valid = valid && checkLength(artist, "artist", 1, 128);
 		valid = valid && checkLength(url, "url", 1, 200);
+		valid = valid && checkRegexp(url, urlRegex, "Invalid URL. eg: www.soundcloud.com");
 		if(valid) {	
 			document.getElementById('song_form').submit();
 			dialog.dialog('close');
@@ -53,10 +56,15 @@ $(function() {
 	dialog = $("#dialog-form").dialog({
 		autoOpen: false,
 		height: 430,
-		width: 450,
+		width: 470,
+		resizable: false,
 		modal: true,
+		show: {
+			effect:"fadeIn",
+			duration:300,
+		},
 		buttons: {
-			"Add a Song": addSong,
+			"Add Song": addSong,
 			Cancel: function() {
 				dialog.dialog("close");
 			}
