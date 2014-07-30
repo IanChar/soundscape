@@ -46,8 +46,7 @@ input.text {
 }
 
 fieldset {
-	padding:1em;
-	border: 0;
+	padding:2em;
 }
 
 .validateTips {
@@ -55,11 +54,14 @@ fieldset {
 }
 
 .ui-dialog-titlebar {
-	padding: 0.3em 1em 0.3em 1em;
+	padding: 0.5em 1em 0.5em 1em;
 }
-
+.ui-button {
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
 .ui-dialog-titlebar .ui-button {	/*The button in the titlebar*/
 	float: right;
+	padding:0.15em;
 }
 .ui-dialog-content {		/*Gets rid of the border between content and button pane*/
 	border-bottom: 0px;

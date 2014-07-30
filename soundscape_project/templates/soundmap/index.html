@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
     <script src="http://connect.soundcloud.com/sdk.js"></script>
-    <script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
     <script src="{% static 'geolocation_service.js' %}"></script>
     <script type="text/javascript">
     	function populate_map_helper(data) {
@@ -52,11 +52,15 @@
 	    	<p>Click on a marker to hear a song!</p>
 	    </div>
     </div>
+
     <!-- Modal dialog form for song submission -->
-    <div id="dialog-form" title="Add a Song">
-    	<fieldset>
-    	<span class="validateTips"> All form fields are required. </span>
-            <form id="song_form" method="post" action="/soundmap/add_song/">
+    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-md">Add a Song</button>
+
+	<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-md">
+	    <div class="modal-content">
+	    	<fieldset>
+	      <form id="song_form" method="post" action="/soundmap/add_song/">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -65,14 +69,16 @@
                 {% for field in form.visible_fields %}
                     {{ field.errors }} </br>
                     <label> {{ field.help_text }} </label>
-                    <input id="{{field.name}}" class="form-control text ui-widget-content" type="{{field.field.widget.input_type}}" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
+                    <input id="{{field.name}}" class="form-control text ui-widget-content" type="{{field.field.widget.input_type}}" size="20" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
                 {% endfor %}
                 </br>
-                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" />
+                <input type="submit" value="Add Song" class="btn btn-primary"/>
             </form>
         </fieldset>
+	    </div>
+	  </div>
 	</div>
-	<button id="addsong">Place a marker</button>
+	
 	<script type="text/javascript" src="{% static "map.js" %}"></script>
 
 {% endblock %}

@@ -27,7 +27,7 @@
                 {% endfor %}
 
                 {% for field in form.visible_fields %}
-                    {{ field.errors }} </br>
+                    {{ field.errors }}
                     <label> {{ field.help_text }} </label>
                     <input id="{{field.auto_id}}" class="form-control" size="30" type="{{field.field.widget.input_type}}" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
                 {% endfor %}
