@@ -2,29 +2,13 @@
 
 {% load static %}
 
-{% load dajaxice_templatetags %}
-
 {% block head_block %} 
-	{% dajaxice_js_import %}
 	<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
     <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script src="{% static 'bootstrap.min.js' %}"></script>
     <script src="{% static 'geolocation_service.js' %}"></script>
-    <script type="text/javascript">
-    	function populate_map_helper(data) {
-    		var key;
-    		for(key in data) {
-    			var song = data[key];
-    			populate_map(song);
-    		}
-    	}
-    	jQuery(document).ready(function ($) {
-    		Dajaxice.soundmap.getMarkerInfo(populate_map_helper);
-    		loadCoordinates();
-    	});
-    </script>
-    <script src="{% static 'modal_form.js' %}"></script>
+    <script src="{% static 'loadmap.js' %}"></script>
 {% endblock %}
 
 
