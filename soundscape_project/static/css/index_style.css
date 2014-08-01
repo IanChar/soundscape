@@ -10,6 +10,12 @@ li > a {
 	padding: 0;
 }
 
+#songTable ul li{
+   list-style-image: url(note.png);
+   padding: 0px;
+   margin: 0px;
+}
+
 #infoWindow{
 	height: 5em;
 	width: 17.5em;
