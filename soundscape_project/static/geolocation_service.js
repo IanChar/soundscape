@@ -36,3 +36,7 @@ function loadCoordinates() {
     }
     getLocation();
 }
+
+$(document).ready(function() {
+    loadCoordinates();
+});

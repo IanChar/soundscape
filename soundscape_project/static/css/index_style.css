@@ -10,7 +10,8 @@ li > a {
 	padding: 0;
 }
 
-#songTable ul li{
+
+#playlist-tab ul li{
    list-style-image: url(note.png);
    padding: 0px;
    margin: 0px;
@@ -22,9 +23,9 @@ li > a {
 }
 
 #songTable {
-	background-color: #fbf7e4;
+	background-color: #d9d5ba;
 	position: relative;
-	padding-top: 2em;
+	padding-top: 1em;
 	height: 55em;
 	border: 0.5em solid #424242;
 	float: right;

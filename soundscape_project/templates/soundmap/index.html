@@ -5,10 +5,12 @@
 {% block head_block %} 
 	<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/tab-style.css' %}" />
     <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script src="{% static 'bootstrap.min.js' %}"></script>
     <script src="{% static 'geolocation_service.js' %}"></script>
     <script src="{% static 'loadmap.js' %}"></script>
+    <script src="{% static 'tabs.js' %}"></script>
 {% endblock %}
 
 
@@ -18,23 +20,52 @@
 
     <div class = "col-md-3" id="songTable">
     	{% block side_block %}
-    	{% if song_list %}
+<!--     	{% if song_list %}
     		<ul id = "playlist">
     			{% for song in song_list %}
-    			<li><a onclick = "playMusic('{{song.url}}')" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
+    			<li><a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
     			{% endfor %}
     		</ul>
     	{% else %}
 	    	<ul>
 	    		<li> No songs to play at this time </li>
 	    	</ul>
-	    {% endif %}
-	    <a href = "/soundmap/add_song/">Add a new song</a>
+	    {% endif %} -->
+	    <div class="tabs">
+		    <ul class="tab-links">
+		        <li class="active"><a href="#playlist-tab">Playlist</a></li>
+		        <li><a href="#tab2">Profile</a></li>
+		        <li><a href="#tab3">Tab #3</a></li>
+		    </ul>
+		 
+		    <div class="tab-content">
+		        <div id="playlist-tab" class="tab active">
+		            <p>Current Playlist</p>
+		            {% if song_list %}
+			    		<ul id = "playlist">
+			    			{% for song in song_list %}
+			    			<li><a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
+			    			{% endfor %}
+			    		</ul>
+			    	{% else %}
+				    	<ul>
+				    		<li> No songs to play at this time </li>
+				    	</ul>
+				    {% endif %}
+					<div id="soundcloudPlayer"></div>
+		        </div>
+		 
+		        <div id="tab2" class="tab">
+		            <p>Profile</p>
+		     	</div>
+		 
+		        <div id="tab3" class="tab">
+		        </div>
+		    </div>
+		</div>
 		{% endblock %}
 		
-	    <div id="soundcloudPlayer">
-	    	<p>Click on a marker to hear a song!</p>
-	    </div>
+
     </div>
 
     <!-- Modal dialog form for song submission -->
