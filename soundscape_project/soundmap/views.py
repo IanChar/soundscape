@@ -155,3 +155,19 @@ def getMarkerInfo(request):
 
 	else:
 		return HttpResponseRedirect('/soundmap/')
+
+def getPlaylistInfo(request):
+	if request.method=='GET':
+		song_list = Song.objects.order_by('-likes')[:15]
+		count =1
+		song_db = {}
+		for song in song_list:
+			marker = {}
+			marker['name'] = song.name
+			marker['artist'] = song.artist
+			marker['url'] = song.url
+			song_db['song'+str(count)] = marker
+			count +=1
+		return HttpResponse(simplejson.dumps(song_db))
+	else:
+		return HttpResponseRedirect('/soundmap/')

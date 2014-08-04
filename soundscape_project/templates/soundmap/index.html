@@ -43,9 +43,11 @@
 		            <p>Current Playlist</p>
 		            {% if song_list %}
 			    		<ul id = "playlist">
+			    			<!--
 			    			{% for song in song_list %}
 			    			<li><a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
 			    			{% endfor %}
+			    			-->
 			    		</ul>
 			    	{% else %}
 				    	<ul>
@@ -60,7 +62,7 @@
 		     	</div>
 		 
 		        <div id="tab3" class="tab">
-		        </div>
+		        </div> 
 		    </div>
 		</div>
 		{% endblock %}
