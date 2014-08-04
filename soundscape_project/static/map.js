@@ -100,21 +100,13 @@ google.maps.event.addDomListener(window, "resize", function() {
 
 //***********************MARKER STUFF********************
 //CLASS
-function placeMarker(location, name, songName, songUrl){
+function placeMarker(location){
 	if(canPlaceMarker)
 	{   
-		//*******DEFAULT VARIABLES**********************
-		if(name === undefined)
-			name = "Shumbody";
-		if(songName === undefined)
-			songName = "Folds in Your Hands";
-		if(songUrl === undefined)
-			songUrl = "https://soundcloud.com/shumbody/folds-in-your-hands/";
-
 		//*********SET UP INFO WINDOW AND MARKER********
 		var infoText = '<div id="infoWindow">' +
-						'<p>Name: ' + name + '</p>' +
-						'<p>Song: ' + songName + '</p>' +
+						'<p>latitude: ' + location.lat() + '</p>' +
+						'<p>longitude: ' + location.lng() + '</p>' +
 						'</div>'
 
 	    var marker = new google.maps.Marker({
@@ -137,7 +129,7 @@ function placeMarker(location, name, songName, songUrl){
 			infoWindow.close(map, marker);
 		});
 		google.maps.event.addListener(marker, 'click', function() {
-			playMusic(songUrl);
+			//Load Playlist goes here!!!
 			marker.setAnimation(google.maps.Animation.BOUNCE);
 			if(previousMarkerAnimated != null)
 			{
@@ -170,7 +162,7 @@ var playMusic = function(songUrl) {
 function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
 	enablePlacing();
-	placeMarker(coordinates, song.artist, song.name, song.url)
+	placeMarker(coordinates)
 }
 
 //********************INITIALIZE THE MAP*********************

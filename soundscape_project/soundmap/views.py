@@ -147,13 +147,8 @@ def getMarkerInfo(request):
 		song_db = {}
 		for song in song_list:
 			marker = {}
-			marker['artist'] = song.artist
-			marker['name'] = song.name
 			marker['lat'] = song.latitude
 			marker['lng'] = song.longitude
-			marker['url'] = song.url
-			marker['likes'] = song.likes
-			marker['listens'] = song.listens
 			song_db['song'+str(count)] = marker
 			count +=1
 		return HttpResponse(simplejson.dumps(song_db))
