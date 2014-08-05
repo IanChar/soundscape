@@ -130,7 +130,14 @@ function placeMarker(location){
 			infoWindow.close(map, marker);
 		});
 		google.maps.event.addListener(marker, 'click', function() {
-			//Load Playlist goes here!!!
+			clearPlaylist();
+			$.get('/soundmap/get_playlist_info/', {latitude:location.lat(), longitude:location.lng()}, function(data) {
+		        var json_struct = $.parseJSON(data);
+		        for(var key in json_struct) {
+		            var song = json_struct[key];
+		            addToPlaylist(song.name, song.artist, song.url);
+		        }
+		    });
 			marker.setAnimation(google.maps.Animation.BOUNCE);
 			if(previousMarkerAnimated != null)
 			{
