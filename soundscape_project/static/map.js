@@ -7,6 +7,7 @@ var canPlaceMarker = false;
 var markers = [];
 var infoWindows = [];
 var previousMarkerAnimated = null;
+var playlistNum = 0;
 
 function initialize() {
 	
@@ -146,11 +147,16 @@ function placeMarker(location){
 }
 
 function addToPlaylist(name, artist, url){
-	$('#playlist').append('<li><a onclick = "playMusic('.concat(url).concat(')">'.concat(name).concat(" -- ").concat(artist).concat('</a> </li>')));
+	playlistNum = playlistNum + 1;
+	$('#playlist').append('<li><a id="'.concat(playlistNum).concat('" href="#">').concat(name).concat(" -- ").concat(artist).concat('</a> </li>'));
+	$('#'.concat(playlistNum)).click(function(){
+		playMusic(url);
+	});
 }
 
 function clearPlaylist(){
 	$('#playlist').empty();
+	playlistNum = 0;
 }
 
 //FUNCTIONS
@@ -176,7 +182,6 @@ function populate_map(song) {
 //********************INITIALIZE THE MAP*********************
 google.maps.event.addDomListener(window, 'load', initialize);
 addToPlaylist("Borat", "Throw the Jew Down the Well", "https://soundcloud.com/user3843991/borat-throw-the-jew-down-the");
-clearPlaylist();
 addToPlaylist("Paprika", "Parade", "https://soundcloud.com/dj-tenk/susumu-hirasawa-parade");
-addToPlaylist("This Link", "Should be Broken", "ianwashere.com");
+//addToPlaylist("This Link", "Should be Broken", "ianwashere.com");
 
