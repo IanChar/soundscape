@@ -158,8 +158,7 @@ def getMarkerInfo(request):
 
 def getPlaylistInfo(request):
 	if request.method=='GET':
-		#song_list = Song.objects.filter(latitude=request.latitude, longitude=request.longitude)
-		song_list = Song.objects.order_by('-likes')[:15]
+		song_list = Song.objects.filter(latitude=0, longitude=0)
 		count =1
 		song_db = {}
 		for song in song_list:

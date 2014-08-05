@@ -33,7 +33,9 @@ li > a {
 
 #soundcloudPlayer {
 	position: absolute;
-	bottom: 10px;
+	top: 43.25em;
+	left: 0em;
+	width: 100em;
 	height: 35%;
 }
 
@@ -41,7 +43,7 @@ iframe {
 	display: block;
 	width: auto;
 	height: auto;
-	max-width: 100%;
+	max-width: 150em;
 	max-height: 100%;
 }
 
