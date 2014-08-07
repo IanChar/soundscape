@@ -5,7 +5,9 @@ from soundmap.models import Song, UserProfile, User
 from soundmap.forms import UserForm, UserProfileForm, SongForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-import simplejson
+import simplejson, json
+
+EPSILON = 0.0001
 
 def index(request):
 	context = RequestContext(request)
@@ -158,9 +160,10 @@ def getMarkerInfo(request):
 
 def getPlaylistInfo(request):
 	if request.method=='GET':
-		song_list = Song.objects.filter(latitude=0, longitude=0)
+		song_list = Song.objects.filter(latitude=request.GET['lat'], longitude=request.GET['lng'])
 		count =1
 		song_db = {}
+		print song_list
 		for song in song_list:
 			marker = {}
 			marker['name'] = song.name

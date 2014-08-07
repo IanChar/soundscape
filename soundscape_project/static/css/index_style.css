@@ -8,6 +8,7 @@ li > a {
 	height: 55em;
 	float: left;
 	padding: 0;
+	background-color: #fefcf3;
 }
 
 
@@ -33,17 +34,15 @@ li > a {
 
 #soundcloudPlayer {
 	position: absolute;
-	top: 43.25em;
+	bottom: 0px;
 	left: 0em;
-	width: 100em;
-	height: 35%;
+	width: auto;
 }
 
 iframe {
 	display: block;
 	width: auto;
 	height: auto;
-	max-width: 150em;
 	max-height: 100%;
 }
 

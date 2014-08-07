@@ -17,15 +17,15 @@ function initialize() {
 	      featureType: "water",
 	      elementType: "all",
 	      stylers: [
-	      	{hue: "#FBF7E4"},
+	      	{hue: "#424242"},
 	      	{saturation: -10},
-	      	{lightness: 75}
+	      	{lightness: 100}
 	      ]
 	    },{
 	      featureType: "landscape",
 	      elementType: "geometry",
 	      stylers: [
-	      	{hue: "#8E001C"},
+	      	{hue: "#00FF00"},
 	      	{saturation: 50},
 	        { visibility: "simplified" }
 	      ]
@@ -121,7 +121,6 @@ function placeMarker(location){
 	    	content: infoText
 	    });
 
-
 	    //***************LISTENERS******************
     	google.maps.event.addListener(marker, 'mouseover', function(){
 			infoWindow.open(map, marker);
@@ -129,9 +128,9 @@ function placeMarker(location){
 		google.maps.event.addListener(marker, 'mouseout', function(){
 			infoWindow.close(map, marker);
 		});
-		google.maps.event.addListener(marker, 'click', function() {
+		google.maps.event.addListener(marker, 'click', function(){
 			clearPlaylist();
-			$.get('/soundmap/get_playlist_info/', {lat:location.lat(), lon:location.lng()}, function(data) {
+			$.get('/soundmap/get_playlist_info/', {lat:marker.getPosition().lat(), lng:marker.getPosition().lng()}, function(data) {
 		        var json_struct = $.parseJSON(data);
 		        for(var key in json_struct) {
 		            var song = json_struct[key];
@@ -174,11 +173,10 @@ var enablePlacing = function() {
 var playMusic = function(songUrl) {
 	  SC.oEmbed(songUrl,
   			{color: "ff0066",
-  			 auto_play: true},
+  			 auto_play: true,
+  			},
   			 document.getElementById("soundcloudPlayer"));
 }
-
-//***********************AJAX*******************
 
 function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
