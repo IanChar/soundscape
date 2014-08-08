@@ -7,3 +7,12 @@ $(document).ready(function ($) {
         }
     });
 });
+
+var playMusic= function(songUrl, songid) {
+    SC.oEmbed(songUrl,
+            {color: "ff0066",
+             auto_play: true,
+            },
+             document.getElementById("soundcloudPlayer"));
+    $.get('/soundmap/updateListens/', {song_id:songid});
+}

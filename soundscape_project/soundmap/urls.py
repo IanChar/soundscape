@@ -10,4 +10,6 @@ urlpatterns=patterns('',
 	url(r'^profile/(?P<profile_username>\w+)/$', views.profile, name='profile'),
 	url(r'^get_marker_info/$', views.getMarkerInfo, name='get_marker_info'),
 	url(r'^get_playlist_info/$', views.getPlaylistInfo, name='get_playlist_info'),
+	url(r'^like_song/$', views.likeSong, name='like_song'),
+	url(r'^updateListens/$', views.updateListens, name='update_listens'),
 )

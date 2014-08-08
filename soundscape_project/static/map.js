@@ -170,14 +170,6 @@ var enablePlacing = function() {
 	canPlaceMarker = true;
 }
 
-var playMusic = function(songUrl) {
-	  SC.oEmbed(songUrl,
-  			{color: "ff0066",
-  			 auto_play: true,
-  			},
-  			 document.getElementById("soundcloudPlayer"));
-}
-
 function populate_map(song) {
 	var coordinates = new google.maps.LatLng(song.lat, song.lng);
 	enablePlacing();
@@ -186,7 +178,5 @@ function populate_map(song) {
 
 //********************INITIALIZE THE MAP*********************
 google.maps.event.addDomListener(window, 'load', initialize);
-addToPlaylist("Borat", "Throw the Jew Down the Well", "https://soundcloud.com/user3843991/borat-throw-the-jew-down-the");
-addToPlaylist("Paprika", "Parade", "https://soundcloud.com/dj-tenk/susumu-hirasawa-parade");
 //addToPlaylist("This Link", "Should be Broken", "ianwashere.com");
 

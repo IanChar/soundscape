@@ -10,6 +10,7 @@
     <script src="{% static 'bootstrap.min.js' %}"></script>
     <script src="{% static 'geolocation_service.js' %}"></script>
     <script src="{% static 'loadmap.js' %}"></script>
+    <script src="{% static 'like_song.js' %}"></script>
     <script src="{% static 'tabs.js' %}"></script>
 {% endblock %}
 
@@ -35,8 +36,9 @@
 			    			
 			    			{% for song in song_list %}
 			    			<li class="playlist">
-			    				<a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a>
-			    				<p id="like_count">{{song.likes}} people like this</p>
+			    				<a onclick="playMusic('{{song.url}}', {{song.id}})" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
+			    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
+			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-mini btn-default" type="button">Like</button>
 			    			</li>
 			    			{% endfor %}
 			    			

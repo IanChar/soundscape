@@ -142,23 +142,57 @@ def user_logout(request):
 
 	return HttpResponseRedirect('/soundmap/')
 
+@login_required
+def likeSong(request):
+	context=RequestContext(request)
+	song_id=None
+	if request.method=='GET':
+		song_id = request.GET['song_id']
+
+	likes=0
+	if song_id:
+		song = Song.objects.get(id=int(song_id))
+		if song:
+			likes = song.likes+1
+			song.likes = likes
+			song.save()
+
+	return HttpResponse(likes)
+
+def updateListens(request):
+	context= RequestContext(request)
+	song_id=None
+	if request.method=='GET':
+		song_id = request.GET['song_id']
+	listens=0
+	if song_id:
+		song = Song.objects.get(id=int(song_id))
+		if song:
+			listens = song.listens+1
+			song.listens = listens
+			song.save()
+	return HttpResponse(listens)
+
 def getMarkerInfo(request):
+	context=RequestContext(request)
 	if request.method=='GET':
 		song_list = Song.objects.order_by('-likes')[:15]
-		count =1
-		song_db = {}
-		for song in song_list:
-			marker = {}
-			marker['lat'] = song.latitude
-			marker['lng'] = song.longitude
-			song_db['song'+str(count)] = marker
-			count +=1
-		return HttpResponse(simplejson.dumps(song_db))
+		if song_list:
+			count =1
+			song_db = {}
+			for song in song_list:
+				marker = {}
+				marker['lat'] = song.latitude
+				marker['lng'] = song.longitude
+				song_db['song'+str(count)] = marker
+				count +=1
+			return HttpResponse(simplejson.dumps(song_db))
 
 	else:
 		return HttpResponseRedirect('/soundmap/')
 
 def getPlaylistInfo(request):
+	context=RequestContext(request)
 	if request.method=='GET':
 		song_list = Song.objects.filter(latitude=request.GET['lat'], longitude=request.GET['lng'])
 		count =1
