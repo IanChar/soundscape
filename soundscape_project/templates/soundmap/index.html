@@ -31,12 +31,15 @@
 		        <div id="playlist-tab" class="tab active">
 		            <h2>Current Playlist</h2>
 		            {% if song_list %}
-			    		<ul id = "playlist">
-			    			<!--
+			    		<ul class = "no-bullet">
+			    			
 			    			{% for song in song_list %}
-			    			<li><a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a></li>
+			    			<li class="playlist">
+			    				<a onclick = "playMusic('{{song.url}}')" href="#" id="{{song.artist}}">{{song.name}} -- {{song.artist}}</a>
+			    				<p id="like_count">{{song.likes}} people like this</p>
+			    			</li>
 			    			{% endfor %}
-			    			-->
+			    			
 			    		</ul>
 			    	{% else %}
 				    	<ul>

@@ -12,17 +12,23 @@ li > a {
 }
 
 
-#playlist-tab ul li{
-   list-style-image: url(note.png);
+ul.no-bullet{
+   list-style-type: none;
    padding: 0px;
    margin: 0px;
 }
 
+li.playlist {
+	background: url(note.png) no-repeat left top;
+	background-size: 1.5em;
+	padding-left:2em;
+}
+/*
 #infoWindow{
 	height: 5em;
 	width: 17.5em;
 }
-
+*/
 #songTable {
 	background-color: #d9d5ba;
 	position: relative;
