@@ -38,7 +38,7 @@
 			    			<li class="playlist">
 			    				<a onclick="playMusic('{{song.url}}', {{song.id}})" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
 			    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
-			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-mini btn-default" type="button">Like</button>
+			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-xs btn-default" type="button">Like</button>
 			    			</li>
 			    			{% endfor %}
 			    			

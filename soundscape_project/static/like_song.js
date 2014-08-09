@@ -16,3 +16,4 @@ var playMusic= function(songUrl, songid) {
 			 document.getElementById("soundcloudPlayer"));
   	$.get('/soundmap/updateListens/', {song_id:songid});
 }
+

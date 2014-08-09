@@ -17,16 +17,17 @@ function initialize() {
 	      featureType: "water",
 	      elementType: "all",
 	      stylers: [
-	      	{hue: "#424242"},
-	      	{saturation: -10},
-	      	{lightness: 100}
+	      	{hue: "#000000"},
+	      	{saturation: -100},
+	      	{lightness: -8}
 	      ]
 	    },{
 	      featureType: "landscape",
 	      elementType: "geometry",
 	      stylers: [
 	      	{hue: "#00FF00"},
-	      	{saturation: 50},
+	      	{saturation: 60},
+	      	{lightness:0},
 	        { visibility: "simplified" }
 	      ]
 	    },{

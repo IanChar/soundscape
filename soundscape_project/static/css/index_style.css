@@ -20,8 +20,9 @@ ul.no-bullet{
 
 li.playlist {
 	background: url(note.png) no-repeat left top;
-	background-size: 1.5em;
-	padding-left:2em;
+	background-size: 1.25em;
+	padding-left:2.1em;
+	margin-bottom: 0.8em;
 }
 /*
 #infoWindow{
