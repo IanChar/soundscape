@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import simplejson, json
 
-EPSILON = 0.0001
 
 def index(request):
 	context = RequestContext(request)
@@ -19,16 +18,22 @@ def index(request):
 
 	return render_to_response('soundmap/index.html', context_dict, context)
 
+@login_required
 def add_song(request):
 	context = RequestContext(request)
 	context_dict={}
+	uploader = User.objects.get(username=request.user)
 
 	if request.method=='POST':
 		form = SongForm(request.POST)
 
 		if form.is_valid():
 			song = form.save(commit=False)
-
+			try:
+				uploader_profile = UserProfile.objects.get(user=uploader)
+				song.uploader = uploader_profile
+			except UserProfile.DoesNotExist:
+				uploader_profile=None
 			song.listens=0
 			song.likes=0
 			song.save()

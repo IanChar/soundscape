@@ -13,7 +13,7 @@ class SongForm(forms.ModelForm):
 
 	class Meta:
 		model = Song
-		fields = ('name', 'artist', 'url', 'listens', 'likes', 'latitude', 'longitude')
+		fields = ('name', 'artist', 'url')
 
 class UserForm(forms.ModelForm):
 	username= forms.CharField(label="username", help_text="Please enter your username")
@@ -24,7 +24,7 @@ class UserForm(forms.ModelForm):
 		fields = ('username', 'password')
 
 class UserProfileForm(forms.ModelForm):
-	location = forms.CharField(label="location", help_text="Please enter your location", required=False)
+	location = forms.CharField(label="location", help_text="Please enter your location (City, State/Province)", required=False)
 	picture = forms.ImageField(label="picture", help_text="Select a profile image to upload", required=False)
 
 	class Meta:
