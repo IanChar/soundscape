@@ -53,7 +53,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
+# Example: #os.path.join(PROJECT_PATH, 'media')
+
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -65,7 +66,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = STATIC_ROOT_PATH
+STATIC_ROOT = "STATIC_ROOT_PATH"
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"

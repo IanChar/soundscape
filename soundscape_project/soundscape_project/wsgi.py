@@ -14,19 +14,19 @@ framework.
 
 """
 import os
+import sys
 
-# We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
-# if running multiple sites in the same mod_wsgi process. To fix this, use
-# mod_wsgi daemon mode with each site in its own daemon process, or use
-# os.environ["DJANGO_SETTINGS_MODULE"] = "soundscape_project.settings"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "soundscape_project.settings")
+# ADD YOUR PROJECT TO THE PYTHONPATH FOR THE PYTHON INSTANCE
+path = '/home/tommy/Documents/soundscape/soundscape_project/'
 
-# This application object is used by any WSGI server configured to use this
-# file. This includes Django's development server, if the WSGI_APPLICATION
-# setting points here.
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+if path not in sys.path:
+    sys.path.append(path)
 
-# Apply WSGI middleware here.
-# from helloworld.wsgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+os.chdir(path)
+
+# TELL DJANGO WHERE YOUR SETTINGS MODULE IS LOCATED
+os.environ['DJANGO_SETTINGS_MODULE'] = 'soundscape_project.settings'
+
+# IMPORT THE DJANGO WSGI HANDLER TO TAKE CARE OF REQUESTS
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()

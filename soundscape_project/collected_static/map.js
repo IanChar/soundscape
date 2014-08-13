@@ -2,11 +2,12 @@
 //***********************MAP STUFF****************************
 var map;
 var currentLocation;
-var browserSupportFlag = new Boolean();
+var browserSupportFlag = false;
 var canPlaceMarker = false;
 var markers = [];
 var infoWindows = [];
 var previousMarkerAnimated = null;
+var playlistNum = 0;
 
 function initialize() {
 	
@@ -18,14 +19,15 @@ function initialize() {
 	      stylers: [
 	      	{hue: "#000000"},
 	      	{saturation: -100},
-	      	{lightness: 0}
+	      	{lightness: -8}
 	      ]
 	    },{
 	      featureType: "landscape",
 	      elementType: "geometry",
 	      stylers: [
 	      	{hue: "#00FF00"},
-	      	{saturation: 100},
+	      	{saturation: 60},
+	      	{lightness:0},
 	        { visibility: "simplified" }
 	      ]
 	    },{
@@ -75,13 +77,13 @@ function initialize() {
 
 	  function handleNoGeolocation(errorFlag) {
 	    if (errorFlag == true) {
-	      alert("Geolocation service failed.");
-	      initialLocation = newyork;
+	      alert("Geolocation service failed. Default location set.");
+	      currentLocation = newyork;
 	    } else {
 	      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-	      initialLocation = siberia;
+	      currentLocation = siberia;
 	    }
-	    map.setCenter(initialLocation);
+	    map.setCenter(currentLocation);
 	  }
 
 	//****************LISTENERS*********************************
@@ -100,21 +102,13 @@ google.maps.event.addDomListener(window, "resize", function() {
 
 //***********************MARKER STUFF********************
 //CLASS
-function placeMarker(location, name, songName, songUrl){
+function placeMarker(location){
 	if(canPlaceMarker)
 	{   
-		//*******DEFAULT VARIABLES**********************
-		if(name === undefined)
-			name = "Shumbody";
-		if(songName === undefined)
-			songName = "Folds in Your Hands";
-		if(songUrl === undefined)
-			songUrl = "https://soundcloud.com/shumbody/folds-in-your-hands/";
-
 		//*********SET UP INFO WINDOW AND MARKER********
 		var infoText = '<div id="infoWindow">' +
-						'<p>Name: ' + name + '</p>' +
-						'<p>Song: ' + songName + '</p>' +
+						'<p>latitude: ' + location.lat() + '</p>' +
+						'<p>longitude: ' + location.lng() + '</p>' +
 						'</div>'
 
 	    var marker = new google.maps.Marker({
@@ -128,7 +122,6 @@ function placeMarker(location, name, songName, songUrl){
 	    	content: infoText
 	    });
 
-
 	    //***************LISTENERS******************
     	google.maps.event.addListener(marker, 'mouseover', function(){
 			infoWindow.open(map, marker);
@@ -136,8 +129,15 @@ function placeMarker(location, name, songName, songUrl){
 		google.maps.event.addListener(marker, 'mouseout', function(){
 			infoWindow.close(map, marker);
 		});
-		google.maps.event.addListener(marker, 'click', function() {
-			playMusic(songUrl);
+		google.maps.event.addListener(marker, 'click', function(){
+			clearPlaylist();
+			$.get('/soundmap/get_playlist_info/', {lat:marker.getPosition().lat(), lng:marker.getPosition().lng()}, function(data) {
+		        var json_struct = $.parseJSON(data);
+		        for(var key in json_struct) {
+		            var song = json_struct[key];
+		            addToPlaylist(song.name, song.artist, song.url);
+		        }
+		    });
 			marker.setAnimation(google.maps.Animation.BOUNCE);
 			if(previousMarkerAnimated != null)
 			{
@@ -153,49 +153,31 @@ function placeMarker(location, name, songName, songUrl){
 	}
 }
 
+function addToPlaylist(name, artist, url){
+	playlistNum = playlistNum + 1;
+	$('#playlist').append('<li><a id="'.concat(playlistNum).concat('" href="#">').concat(name).concat(" -- ").concat(artist).concat('</a> </li>'));
+	$('#'.concat(playlistNum)).click(function(){
+		playMusic(url);
+	});
+}
+
+function clearPlaylist(){
+	$('#playlist').empty();
+	playlistNum = 0;
+}
+
 //FUNCTIONS
 var enablePlacing = function() {
 	canPlaceMarker = true;
 }
 
-var placeCurrentLocationMarker = function() {
-	canPlaceMarker = true;
-	placeMarker(currentLocation);
-}
-
-
-var playMusic = function(songUrl) {
-	  SC.oEmbed(songUrl,
-  			{color: "ff0066",
-  			 auto_play: true},
-  			 document.getElementById("soundcloudPlayer"));
-}
-
-//***********************AJAX STUFF*******************
-
-function populate(data) {
-	var place1 = new google.maps.LatLng(data.m1.lat,data.m1.lng);
-	var place2 = new google.maps.LatLng(data.m2.lat,data.m2.lng);
-	var place3 = new google.maps.LatLng(data.m3.lat,data.m3.lng);
-	var place4 = new google.maps.LatLng(data.m4.lat,data.m4.lng);
-	var place5 = new google.maps.LatLng(data.m5.lat,data.m5.lng);
-	
+function populate_map(song) {
+	var coordinates = new google.maps.LatLng(song.lat, song.lng);
 	enablePlacing();
-	placeMarker(place1, data.m1.artist, data.m1.title, data.m1.url)
-
-	enablePlacing();
-	placeMarker(place2, data.m2.artist, data.m2.title, data.m2.url)
-
-	enablePlacing();
-	placeMarker(place3, data.m3.artist, data.m3.title, data.m3.url)
-
-	enablePlacing();
-	placeMarker(place4, data.m4.artist, data.m4.title, data.m4.url)
-
-	enablePlacing();
-	placeMarker(place5, data.m5.artist, data.m5.title, data.m5.url)
+	placeMarker(coordinates)
 }
 
 //********************INITIALIZE THE MAP*********************
 google.maps.event.addDomListener(window, 'load', initialize);
+//addToPlaylist("This Link", "Should be Broken", "ianwashere.com");
 
