@@ -126,20 +126,22 @@ def user_login(request):
 	else:
 		return render_to_response('soundmap/login.html', context_dict, context)
 
-def profile(request, profile_username):
+def profile(request):
 	context = RequestContext(request)
-
+	profile = None
 	context_dict={}
+	if request.method=='GET':
+		name= request.GET.get('name', None)
 
-	u = User.objects.get(username = profile_username)
-	try:
-		context_dict['user']=u
-		profile = UserProfile.objects.get(user=u)
-		context_dict['user_profile']=profile
-
-	except UserProfile.DoesNotExist:
-		pass
-	return render_to_response('soundmap/profile.html', context_dict, context)
+	if name:
+		user = User.objects.get(username=name)
+		if user:
+			profile = UserProfile.objects.get(user=user)
+			context_dict['username'] = profile.user.username
+			context_dict['location'] = profile.location
+			if profile.picture:
+				context_dict['picture_url']=profile.picture.url
+	return HttpResponse(simplejson.dumps(context_dict))
 
 @login_required
 def user_logout(request):

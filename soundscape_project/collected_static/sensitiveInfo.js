@@ -1,1 +1,0 @@
-var mapKey = "AIzaSyC-cB1jNOlV1bFrl5cDJKKknbXQzY5vY8Q"

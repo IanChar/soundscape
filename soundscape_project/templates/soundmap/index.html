@@ -10,7 +10,7 @@
     <script src="{% static 'bootstrap.min.js' %}"></script>
     <script src="{% static 'geolocation_service.js' %}"></script>
     <script src="{% static 'loadmap.js' %}"></script>
-    <script src="{% static 'like_song.js' %}"></script>
+    <script src="{% static 'ajax.js' %}"></script>
     <script src="{% static 'tabs.js' %}"></script>
 {% endblock %}
 
@@ -24,7 +24,7 @@
 	    <div class="tabs">
 		    <ul class="tab-links">
 		        <li class="active"><a href="#playlist-tab">Playlist</a></li>
-		        <li><a href="#tab2">Profile</a></li>
+		        <li><a id="profileTab" href="#profile-tab">Profile</a></li>
 		        <li><a href="#tab3">About</a></li>
 		    </ul>
 		 
@@ -36,7 +36,7 @@
 			    			
 			    			{% for song in song_list %}
 			    			<li class="playlist">
-			    				<a onclick="playMusic('{{song.url}}', {{song.id}})" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
+			    				<a onclick="playMusic('{{song.url}}', {{song.id}}, '{{song.uploader.user.username}}')" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
 			    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
 			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-xs btn-default" type="button">Like</button>
 			    			</li>
@@ -51,8 +51,12 @@
 					
 		        </div>
 		 
-		        <div id="tab2" class="tab">
-		            <h2>My Profile</h2>
+		        <div id="profile-tab" class="tab">
+					<h1 id="profile-name"></h1>
+
+					<div id="profile-location"> </div>
+
+					<img style="height:auto; width:auto; max-height:50%; max-width:100%;" id ="profile-picture"/>
 		     	</div>
 		 
 		        <div id="tab3" class="tab">
