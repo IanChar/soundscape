@@ -1,8 +1,9 @@
 import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soundscape_project.settings')
 from soundmap.models import Song, User, UserProfile
 
 uploader = User.objects.get(username="oldgregg")
-uploader_profile = UserProfile.objects.get(User=uploader)
+uploader_profile = UserProfile.objects.get(user=uploader)
 
 def populate():
 	add_song(name="Changes", artist = "2Pac", url="https://soundcloud.com/ghetto-records-2/2pac-changes", lat=10, lng=20)
@@ -22,5 +23,4 @@ def add_song(name, artist, url, lat, lng, listens=0, likes=0, up=uploader_profil
 
 if __name__ =='__main__':
 	print "Starting Soundmap population script..."
-	os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soundscape_project.settings')
 	populate()
