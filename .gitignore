@@ -1,1 +1,4 @@
 soundscape_project/static/sensitiveInfo.js
+venv
+*.pyc
+staticfiles

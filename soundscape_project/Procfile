@@ -1,0 +1,1 @@
+web: gunicorn soundscape_project.wsgi --log-file -
