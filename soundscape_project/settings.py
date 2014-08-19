@@ -4,10 +4,10 @@ import os
 SETTINGS_DIR = os.path.dirname(__file__)
 #PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 #PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 #STATIC_ROOT_PATH = os.path.join(PROJECT_PATH, 'staticfiles')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'soundmap.db')
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static/')
 
 DEBUG = False
