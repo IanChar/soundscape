@@ -1,0 +1,39 @@
+{% extends 'soundmap/base.html' %}
+
+{% block title %} Login {% endblock%}
+
+{% block head_block %}
+	<style>
+		#login {
+			height: 32em;
+		}
+		#login_form {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="container-fluid" id="login">
+
+		<form class="col-xs-3" id="login_form" method = "post" action="/soundmap/login/">
+			<h1>Please Login</h1>
+			{% csrf_token %}
+
+			{% if bad_details %}
+				<p><font color="#8e001c"> Your username and/or password were incorrect. Please try again</font></p>
+			{% elif disabled_acct %}
+				<p><font color="#8e001c"> Your account has been disabled. </font></p>
+			{% endif %}
+			<label for="login_username">Username:</label>
+			<input class="form-control" type="text" name = "username" value="" size="50" placeholder="Username"/>
+			<br/>
+			<label for="login_password">Password:</label>
+			<input class="form-control" type="password" name = "password" value="" size="50" placeholder="Password"/>
+			<br/>
+			<input class="btn btn-primary" type="submit" value="Submit"/>
+		</form>
+</div>
+
+{% endblock %}

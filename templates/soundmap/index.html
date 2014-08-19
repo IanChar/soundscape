@@ -1,0 +1,104 @@
+{% extends 'soundmap/base.html' %}
+
+{% load static %}
+
+{% block head_block %} 
+	<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/index_style.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/tab-style.css' %}" />
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="{% static 'geolocation_service.js' %}"></script>
+    <script src="{% static 'loadmap.js' %}"></script>
+    <script src="{% static 'ajax.js' %}"></script>
+    <script src="{% static 'tabs.js' %}"></script>
+{% endblock %}
+
+
+{% block body_block %}
+
+    <div class = "col-md-9" id="mapContainer"></div>
+
+    <div class = "col-md-3" id="songTable">
+    	{% block side_block %}
+	    <div class="tabs">
+		    <ul class="tab-links">
+		        <li class="active"><a href="#playlist-tab">Playlist</a></li>
+		        <li><a id="profileTab" href="#profile-tab">Profile</a></li>
+		        <li><a href="#tab3">About</a></li>
+		    </ul>
+		 
+		    <div class="tab-content">
+		        <div id="playlist-tab" class="tab active">
+		            <h2>Current Playlist</h2>
+		            {% if song_list %}
+			    		<ul class = "no-bullet">
+			    			
+			    			{% for song in song_list %}
+			    			<li class="playlist">
+			    				<a onclick="playMusic('{{song.url}}', {{song.id}}, '{{song.uploader.user.username}}')" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
+			    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
+			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-xs btn-default" type="button">Like</button>
+			    			</li>
+			    			{% endfor %}
+			    			
+			    		</ul>
+			    	{% else %}
+				    	<ul>
+				    		<li> No songs to play at this time </li>
+				    	</ul>
+				    {% endif %}
+					
+		        </div>
+		 
+		        <div id="profile-tab" class="tab">
+					<h1 id="profile-name"></h1>
+
+					<div id="profile-location"> </div>
+
+					<img style="height:auto; width:auto; max-height:50%; max-width:100%;" id ="profile-picture"/>
+		     	</div>
+		 
+		        <div id="tab3" class="tab">
+		        	<h2>Welcome to Soundscape!</h2>
+		        	<p>Soundscape offers a new way of exploring and sharing music. By using the Soundmap, users can click a marker to load a playlist of music uploaded by people
+		        	from that location. Get started by creating an account, uploading a song, or clicking a marker.</p>
+		        </div>
+
+		    </div>
+		    <div id="soundcloudPlayer"></div>
+		</div>
+		{% endblock %}
+		
+
+    </div>
+
+    <!-- Modal dialog form for song submission -->
+    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-md">Add a Song</button>
+
+	<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-md">
+	    <div class="modal-content">
+	    	<fieldset>
+	      <form id="song_form" method="post" action="/soundmap/add_song/">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {{ field.errors }} </br>
+                    <label> {{ field.help_text }} </label>
+                    <input id="{{field.name}}" class="form-control text ui-widget-content" type="{{field.field.widget.input_type}}" size="20" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
+                {% endfor %}
+                </br>
+                <input type="submit" value="Add Song" class="btn btn-primary"/>
+            </form>
+        </fieldset>
+	    </div>
+	  </div>
+	</div>
+	
+	<script type="text/javascript" src="{% static "map.js" %}"></script>
+
+{% endblock %}

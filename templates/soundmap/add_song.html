@@ -1,0 +1,46 @@
+{% extends 'soundmap/base.html' %}
+
+{% load static %}
+
+{% block title %} Add a Song {% endblock %}
+
+{% block head_block %}
+    <link rel = "stylesheet" href=" {% static 'css/add_song_style.css' %}" />
+{% endblock %}
+
+{% block body_block %}
+    <div class="container-fluid" id="container">
+        <div class="col-md-9" id="form">
+            <h1>Add a Song</h1>
+
+            <form id="song_form" method="post" action="/soundmap/add_song/">
+
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    <label> {{ field.help_text }} </label>
+                    <input id="{{field.auto_id}}" class="form-control" size="30" type="{{field.field.widget.input_type}}" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
+                {% endfor %}
+                </br>
+                <input class="btn btn-primary" type="submit" name="submit" value="Add Song"//>
+            </form>
+        </div>
+
+        <div class = "col-md-3" id="songTable">
+            {% if song_list %}
+                <ul>
+                    {% for song in song_list %}
+                    <li>{{song.name}} -- {{song.artist}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p> No songs to play at this time </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
