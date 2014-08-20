@@ -166,14 +166,14 @@ function clearPlaylist(){
 	playlistNum = 0;
 }
 
-//FUNCTIONS
-var enablePlacing = function() {
-	canPlaceMarker = true;
-}
+//Function: populate_map
+//----------------------
+//Called by loadmap.js when the document is ready to load all playlist markers
+//onto the map. The parameter is a playlist object that contains lat, lng, city
+//attributes.
 
-function populate_map(song) {
-	var coordinates = new google.maps.LatLng(song.lat, song.lng);
-	enablePlacing();
+function populate_map(playlist) {
+	var coordinates = new google.maps.LatLng(playlist.lat, playlist.lng);
 	placeMarker(coordinates)
 }
 

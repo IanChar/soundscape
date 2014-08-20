@@ -19,8 +19,8 @@ function loadCoordinates() {
     function success(position) {
         lat = position.coords.latitude;
         lng = position.coords.longitude;
-        $('#id_latitude').attr('value', lat);
-        $('#id_longitude').attr('value', lng);
+        // $('#id_latitude').attr('value', lat);
+        // $('#id_longitude').attr('value', lng);
     }
     
     function handleNoGeolocation(errorFlag) {
