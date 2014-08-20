@@ -1,1 +1,1 @@
-web: gunicorn soundscape_project.wsgi --log-file -
+web: python manage.py syncdb; gunicorn soundscape_project.wsgi --log-file -

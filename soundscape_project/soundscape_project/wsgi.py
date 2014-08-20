@@ -17,10 +17,10 @@ import os
 import sys
 
 # ADD YOUR PROJECT TO THE PYTHONPATH FOR THE PYTHON INSTANCE
-path = '/home/tommy/Documents/soundscape/soundscape_project/'
+path = os.path.dirname(os.path.abspath(__file__))
 
 if path not in sys.path:
-    sys.path.append(path)
+	sys.path.append(path)
 
 os.chdir(path)
 

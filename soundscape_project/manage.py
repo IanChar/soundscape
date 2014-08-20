@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/tommy/Documents/soundscape/venv/bin/python
 import os
 import sys
 
