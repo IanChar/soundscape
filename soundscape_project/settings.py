@@ -6,7 +6,6 @@ SETTINGS_DIR = os.path.dirname(__file__)
 #PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
-#STATIC_ROOT_PATH = os.path.join(PROJECT_PATH, 'staticfiles')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'soundmap.db')
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
@@ -119,8 +118,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #TEMPLATE_PATH,
-    os.path.join(os.path.dirname(__file__), 'templates'),
+    TEMPLATE_PATH,
 )
 
 INSTALLED_APPS = (
