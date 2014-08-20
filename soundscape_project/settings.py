@@ -8,7 +8,7 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 #STATIC_ROOT_PATH = os.path.join(PROJECT_PATH, 'staticfiles')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'soundmap.db')
-STATIC_PATH = os.path.join(PROJECT_PATH, 'static/')
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -67,7 +67,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT =  os.path.join(PROJECT_PATH, 'staticfiles/')
+STATIC_ROOT =  'staticfiles'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
