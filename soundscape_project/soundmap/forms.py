@@ -10,6 +10,7 @@ class SongForm(forms.ModelForm):
 	likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 	# latitude = forms.FloatField(widget=forms.HiddenInput(), initial=0)
 	# longitude = forms.FloatField(widget=forms.HiddenInput(), initial=0)
+	city = forms.CharField(widget=forms.HiddenInput(), initial=0)
 
 	class Meta:
 		model = Song

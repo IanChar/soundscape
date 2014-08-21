@@ -1,6 +1,7 @@
 
 //***********************MAP STUFF****************************
 var map;
+var geocoder;
 var currentLocation;
 var browserSupportFlag = false;
 var markers = [];
@@ -9,6 +10,8 @@ var previousMarkerAnimated = null;
 var playlistNum = 0;
 
 function initialize() {
+
+	geocoder = new google.maps.Geocoder();
 	
 	//*****************MAP OPTIONS*******************************
 	var styles = [
@@ -100,9 +103,7 @@ function placeMarker(location, city){
 
 		//*********SET UP INFO WINDOW AND MARKER********
 		var infoText = '<div id="infoWindow">' +
-						'<h3>City: ' + city + '</h3>' +
-						'<p>latitude: ' + location.lat() + '</p>' +
-						'<p>longitude: ' + location.lng() + '</p>' +
+						'<h5> '+city+' </h5>' +
 						'</div>'
 
 	    var marker = new google.maps.Marker({
@@ -125,9 +126,10 @@ function placeMarker(location, city){
 			infoWindow.close(map, marker);
 		});
 		google.maps.event.addListener(marker, 'click', function(){
-			clearPlaylist();
+			$('#playlist').empty();
 			$.get('/soundmap/get_playlist_info/', {city:marker.getTitle()}, function(data) {
 		        var json_struct = $.parseJSON(data);
+		        console.log(json_struct);
 		        for(var key in json_struct) {
 		            var song = json_struct[key];
 		            addToPlaylist(song.name, song.artist, song.url, song.id, song.username, song.likes);
@@ -148,9 +150,7 @@ function placeMarker(location, city){
 }
 
 function addToPlaylist(name, artist, url, id, username, likes){
-	$('#playlist').empty();
 	var result = '<li id="playlist" class="playlist"> <a onclick="playMusic('.concat("'").concat(url).concat("'").concat(', ').concat(id).concat(', ').concat("'").concat(username).concat("'").concat(')" href="#" id="playSong">').concat(name).concat(' -- ').concat(artist).concat('</a> <b id="like_count_').concat(id).concat('">').concat(likes).concat(' likes</b> <button onclick="likeSong(').concat(id).concat(')" id="like-btn-').concat(id).concat('" data-songid="').concat(id).concat('" class="btn btn-xs btn-default" type="button">Like</button></li>')
-	console.log(result);
 	$('#playlist').append(result);
 }
 

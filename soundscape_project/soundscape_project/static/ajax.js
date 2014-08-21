@@ -20,7 +20,7 @@ var playMusic= function(songUrl, songid, username) {
 		$('#profileTab').parent('li').addClass('active').siblings().removeClass('active');
 		//Add HTML to the profile tab and display profile information
 		var json_data = jQuery.parseJSON(data);
-		$('#profile-name').html(json_data.username);
+		$('#profile-name').html("Uploaded by ".concat(json_data.username));
 		$('#profile-location').html(json_data.location);
 		if(json_data.picture_url) {
 			$('#profile-picture').attr('src',json_data.picture_url);
