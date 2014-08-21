@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from soundmap.models import Song, UserProfile, User
+from soundmap.models import Song, UserProfile, User, Playlist
 from soundmap.forms import UserForm, UserProfileForm, SongForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,7 @@ import simplejson, json
 def index(request):
 	context = RequestContext(request)
 
-	song_list = Song.objects.order_by('-likes')[:16]
+	song_list = Song.objects.all()
 	form=SongForm()
 	
 	context_dict = {'song_list':song_list, 'form':form}
@@ -34,6 +34,16 @@ def add_song(request):
 				song.uploader = uploader_profile
 			except UserProfile.DoesNotExist:
 				uploader_profile=None
+			location = request.POST.get('city', None)
+			if location:
+				song.city = location
+				if Playlist.objects.filter(city=location): #Playlist already exists. Append it to that playlist
+					song.playlist=Playlist.objects.get(city=location)
+				else:
+					playlist = Playlist.objects.get_or_create(latitude=request.POST.get('latitude', 0), longitude=request.POST.get('longitude',0), city=location)
+					song.playlist=playlist[0]
+			else:
+				print("error")
 			song.listens=0
 			song.likes=0
 			song.save()
@@ -180,20 +190,28 @@ def updateListens(request):
 			song.save()
 	return HttpResponse(listens)
 
+#Function: getMarkerInfo
+# -----------------------
+# This function is used by an AJAJ GET request from loadmap.js. It returns
+# a JSON object containing information (such as lat, lng) for all the playlists
+# in the database. This information is then used to place the playlist markers on
+# the map
+
 def getMarkerInfo(request):
 	context=RequestContext(request)
 	if request.method=='GET':
-		song_list = Song.objects.order_by('-likes')[:15]
-		if song_list:
+		playlist_db = {} 	#JSON object containing all playlist markers
+		all_playlists = Playlist.objects.all()
+		if all_playlists:
 			count =1
-			song_db = {}
-			for song in song_list:
+			for playlist in all_playlists:
 				marker = {}
-				marker['lat'] = song.latitude
-				marker['lng'] = song.longitude
-				song_db['song'+str(count)] = marker
+				marker['lat'] = playlist.latitude
+				marker['lng'] = playlist.longitude
+				marker['city'] = playlist.city
+				playlist_db['playlist'+str(count)] = marker
 				count +=1
-			return HttpResponse(simplejson.dumps(song_db))
+		return HttpResponse(simplejson.dumps(playlist_db))
 
 	else:
 		return HttpResponseRedirect('/soundmap/')
@@ -201,17 +219,23 @@ def getMarkerInfo(request):
 def getPlaylistInfo(request):
 	context=RequestContext(request)
 	if request.method=='GET':
-		song_list = Song.objects.filter(latitude=request.GET['lat'], longitude=request.GET['lng'])
-		count =1
-		song_db = {}
-		print song_list
-		for song in song_list:
-			marker = {}
-			marker['name'] = song.name
-			marker['artist'] = song.artist
-			marker['url'] = song.url
-			song_db['song'+str(count)] = marker
-			count +=1
+		song_db = {}	#JSON object containing all songs that are in the current playlist
+		city = request.GET.get('city', None)
+		if city:
+			playlist = Playlist.objects.filter(city=city)
+			if playlist:
+				song_list = Song.objects.filter(playlist=playlist)
+				count =1
+				for song in song_list:
+					marker = {}
+					marker['name'] = song.name
+					marker['artist'] = song.artist
+					marker['url'] = song.url
+					marker['id'] = song.id
+					marker['username'] = song.uploader.user.username
+					marker['likes'] = song.likes
+					song_db['song'+str(count)] = marker
+					count +=1
 		return HttpResponse(simplejson.dumps(song_db))
 	else:
 		return HttpResponseRedirect('/soundmap/')

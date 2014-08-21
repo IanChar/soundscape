@@ -32,7 +32,7 @@
 		        <div id="playlist-tab" class="tab active">
 		            <h2>Current Playlist</h2>
 		            {% if song_list %}
-			    		<ul class = "no-bullet">
+			    		<ul id="playlist" class = "no-bullet">
 			    			
 			    			{% for song in song_list %}
 			    			<li class="playlist">
@@ -44,15 +44,15 @@
 			    			
 			    		</ul>
 			    	{% else %}
-				    	<ul>
-				    		<li> No songs to play at this time </li>
+				    	<ul id="playlist" class="no-bullet">
+				    		<li>No songs to play at this time</li>
 				    	</ul>
 				    {% endif %}
 					
 		        </div>
 		 
 		        <div id="profile-tab" class="tab">
-					<h1 id="profile-name"></h1>
+					<h2 id="profile-name"></h2>
 
 					<div id="profile-location"> </div>
 
@@ -85,12 +85,14 @@
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
-
+				<input id="id_latitude" name="latitude" type="hidden" value="0">
+                <input id="id_longitude" name="longitude" type="hidden" value="0">
                 {% for field in form.visible_fields %}
                     {{ field.errors }} </br>
                     <label> {{ field.help_text }} </label>
                     <input id="{{field.name}}" class="form-control text ui-widget-content" type="{{field.field.widget.input_type}}" size="20" name="{{field.name}}" value="" placeholder="{{field.label}}"/>
                 {% endfor %}
+
                 </br>
                 <input type="submit" value="Add Song" class="btn btn-primary"/>
             </form>

@@ -13,14 +13,14 @@ var playMusic= function(songUrl, songid, username) {
 			{color: "424242",
 			 auto_play: true,
 			},
-			 document.getElementById("soundcloudPlayer"));
+			document.getElementById("soundcloudPlayer"));
   	$.get('/soundmap/updateListens/', {song_id:songid});
 	$.get('/soundmap/profile/', {name:username}, function(data) {
 		$('#profile-tab').fadeIn(300).siblings().hide();
 		$('#profileTab').parent('li').addClass('active').siblings().removeClass('active');
 		//Add HTML to the profile tab and display profile information
 		var json_data = jQuery.parseJSON(data);
-		$('#profile-name').html(json_data.username);
+		$('#profile-name').html("Uploaded by ".concat(json_data.username));
 		$('#profile-location').html(json_data.location);
 		if(json_data.picture_url) {
 			$('#profile-picture').attr('src',json_data.picture_url);

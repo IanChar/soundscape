@@ -1,15 +1,17 @@
 
 //***********************MAP STUFF****************************
 var map;
+var geocoder;
 var currentLocation;
 var browserSupportFlag = false;
-var canPlaceMarker = false;
 var markers = [];
 var infoWindows = [];
 var previousMarkerAnimated = null;
 var playlistNum = 0;
 
 function initialize() {
+
+	geocoder = new google.maps.Geocoder();
 	
 	//*****************MAP OPTIONS*******************************
 	var styles = [
@@ -85,11 +87,6 @@ function initialize() {
 	    }
 	    map.setCenter(currentLocation);
 	  }
-
-	//****************LISTENERS*********************************
-	google.maps.event.addListener(map, 'click', function(event) {
-	   placeMarker(event.latLng);
-	});
 }
 
 //Stuff to do with the window
@@ -102,19 +99,18 @@ google.maps.event.addDomListener(window, "resize", function() {
 
 //***********************MARKER STUFF********************
 //CLASS
-function placeMarker(location){
-	if(canPlaceMarker)
-	{   
+function placeMarker(location, city){
+
 		//*********SET UP INFO WINDOW AND MARKER********
 		var infoText = '<div id="infoWindow">' +
-						'<p>latitude: ' + location.lat() + '</p>' +
-						'<p>longitude: ' + location.lng() + '</p>' +
+						'<h5> '+city+' </h5>' +
 						'</div>'
 
 	    var marker = new google.maps.Marker({
 	        position: location, 
 	        map: map,
-	        animation: google.maps.Animation.DROP
+	        animation: google.maps.Animation.DROP,
+	        title: city
 	        //icon: Need to make a better note 'note.jpg'
 	    });
 
@@ -130,12 +126,13 @@ function placeMarker(location){
 			infoWindow.close(map, marker);
 		});
 		google.maps.event.addListener(marker, 'click', function(){
-			clearPlaylist();
-			$.get('/soundmap/get_playlist_info/', {lat:marker.getPosition().lat(), lng:marker.getPosition().lng()}, function(data) {
+			$('#playlist').empty();
+			$.get('/soundmap/get_playlist_info/', {city:marker.getTitle()}, function(data) {
 		        var json_struct = $.parseJSON(data);
+		        console.log(json_struct);
 		        for(var key in json_struct) {
 		            var song = json_struct[key];
-		            addToPlaylist(song.name, song.artist, song.url);
+		            addToPlaylist(song.name, song.artist, song.url, song.id, song.username, song.likes);
 		        }
 		    });
 			marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -149,35 +146,38 @@ function placeMarker(location){
 		//*************PUSH TO ARRAYS*****************
 	    markers.push(marker);
 	    infoWindows.push(infoWindow);
-	    canPlaceMarker = false;
-	}
+
 }
 
-function addToPlaylist(name, artist, url){
-	playlistNum = playlistNum + 1;
-	$('#playlist').append('<li><a id="'.concat(playlistNum).concat('" href="#">').concat(name).concat(" -- ").concat(artist).concat('</a> </li>'));
-	$('#'.concat(playlistNum)).click(function(){
-		playMusic(url);
-	});
+function addToPlaylist(name, artist, url, id, username, likes){
+	var result = '<li id="playlist" class="playlist"> <a onclick="playMusic('.concat("'").concat(url).concat("'").concat(', ').concat(id).concat(', ').concat("'").concat(username).concat("'").concat(')" href="#" id="playSong">').concat(name).concat(' -- ').concat(artist).concat('</a> <b id="like_count_').concat(id).concat('">').concat(likes).concat(' likes</b> <button onclick="likeSong(').concat(id).concat(')" id="like-btn-').concat(id).concat('" data-songid="').concat(id).concat('" class="btn btn-xs btn-default" type="button">Like</button></li>')
+	$('#playlist').append(result);
 }
 
 function clearPlaylist(){
-	$('#playlist').empty();
+	
 	playlistNum = 0;
 }
 
-//FUNCTIONS
-var enablePlacing = function() {
-	canPlaceMarker = true;
-}
 
-function populate_map(song) {
-	var coordinates = new google.maps.LatLng(song.lat, song.lng);
-	enablePlacing();
-	placeMarker(coordinates)
-}
 
 //********************INITIALIZE THE MAP*********************
 google.maps.event.addDomListener(window, 'load', initialize);
 //addToPlaylist("This Link", "Should be Broken", "ianwashere.com");
 
+//Function: document ready
+//----------------------
+//Called when the document is ready to load all playlist markers
+//onto the map. The parameter is a playlist object that contains lat, lng, city
+//attributes. 
+
+$(document).ready(function ($) {
+	$.get('/soundmap/get_marker_info/', {}, function(data) {
+        var json_struct = $.parseJSON(data);
+        for(var key in json_struct) {
+            var playlist = json_struct[key];
+			var coordinates = new google.maps.LatLng(playlist.lat, playlist.lng);
+			placeMarker(coordinates, playlist.city);        
+		}
+    });
+});
