@@ -13,7 +13,7 @@ var playMusic= function(songUrl, songid, username) {
 			{color: "424242",
 			 auto_play: true,
 			},
-			 document.getElementById("soundcloudPlayer"));
+			document.getElementById("soundcloudPlayer"));
   	$.get('/soundmap/updateListens/', {song_id:songid});
 	$.get('/soundmap/profile/', {name:username}, function(data) {
 		$('#profile-tab').fadeIn(300).siblings().hide();

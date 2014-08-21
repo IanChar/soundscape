@@ -11,7 +11,7 @@ import simplejson, json
 def index(request):
 	context = RequestContext(request)
 
-	song_list = Song.objects.order_by('-likes')[:16]
+	song_list = Song.objects.all()
 	form=SongForm()
 	
 	context_dict = {'song_list':song_list, 'form':form}
@@ -198,7 +198,7 @@ def getMarkerInfo(request):
 				marker = {}
 				marker['lat'] = playlist.latitude
 				marker['lng'] = playlist.longitude
-				market['city'] = playlist.city
+				marker['city'] = playlist.city
 				playlist_db['playlist'+str(count)] = marker
 				count +=1
 		return HttpResponse(simplejson.dumps(playlist_db))
@@ -221,6 +221,9 @@ def getPlaylistInfo(request):
 					marker['name'] = song.name
 					marker['artist'] = song.artist
 					marker['url'] = song.url
+					marker['id'] = song.id
+					marker['username'] = song.uploader.user.username
+					marker['likes'] = song.likes
 					song_db['song'+str(count)] = marker
 					count +=1
 		return HttpResponse(simplejson.dumps(song_db))

@@ -32,7 +32,7 @@
 		        <div id="playlist-tab" class="tab active">
 		            <h2>Current Playlist</h2>
 		            {% if song_list %}
-			    		<ul class = "no-bullet">
+			    		<ul id="playlist" class = "no-bullet">
 			    			
 			    			{% for song in song_list %}
 			    			<li class="playlist">
@@ -44,8 +44,8 @@
 			    			
 			    		</ul>
 			    	{% else %}
-				    	<ul>
-				    		<li> No songs to play at this time </li>
+				    	<ul id="playlist" class="no-bullet">
+				    		<li>No songs to play at this time</li>
 				    	</ul>
 				    {% endif %}
 					
