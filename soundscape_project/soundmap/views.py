@@ -34,6 +34,16 @@ def add_song(request):
 				song.uploader = uploader_profile
 			except UserProfile.DoesNotExist:
 				uploader_profile=None
+			location = request.POST.get('city', None)
+			if location:
+				song.city = location
+				if Playlist.objects.filter(city=location): #Playlist already exists. Append it to that playlist
+					song.playlist=Playlist.objects.get(city=location)
+				else:
+					playlist = Playlist.objects.get_or_create(latitude=request.POST.get('latitude', 0), longitude=request.POST.get('longitude',0), city=location)
+					song.playlist=playlist[0]
+			else:
+				print("error")
 			song.listens=0
 			song.likes=0
 			song.save()

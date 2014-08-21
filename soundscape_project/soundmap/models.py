@@ -26,6 +26,7 @@ class Song(models.Model):
 	listens = models.IntegerField(default=0)
 	likes = models.IntegerField(default=0)
 	uploader = models.ForeignKey(UserProfile)
+	city = models.CharField(max_length=128)
 	playlist = models.ForeignKey(Playlist)
 
 	def __unicode__(self):
