@@ -9,7 +9,7 @@ TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'soundmap.db')
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
