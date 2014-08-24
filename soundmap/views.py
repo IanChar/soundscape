@@ -7,6 +7,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import simplejson, json
 
+# Function: index
+# ---------------
+# The view that loads index.html, which is the homepage. The context dictionary contains
+# a list of all songs in the data base, as well as a SongForm for adding songs. The form
+# is hidden intially because it's a modal form.
 
 def index(request):
 	context = RequestContext(request)
@@ -17,6 +22,16 @@ def index(request):
 	context_dict = {'song_list':song_list, 'form':form}
 
 	return render_to_response('soundmap/index.html', context_dict, context)
+
+# Function: add_song
+# ------------------
+# User must be logged in to add a song. First retrieves the uploader from request.user
+# and then gets information about the song through a form POST request. Commit is initially set
+# to false because additional information about the song is required. The uploader (a UserProfile),
+# is saved and the city field is added using information from the POST request. The corresponding city
+# playlist is selected from the database and saved as song.playlist. Listens and likes are set to
+# 0 by default and finally the song is saved in the database. Redirects to the homepage upon success;
+# otherwise, the errors are printed.
 
 @login_required
 def add_song(request):
@@ -56,6 +71,14 @@ def add_song(request):
 
 	context_dict['form'] = form
 	return render_to_response('soundmap/add_song.html', context_dict, context)
+
+# Function: register
+# ------------------
+# Retrieves data from a form POST request, containing information about the username,
+# password, location, profile picture, etc. It first creates a User object from a UserForm,
+# as specified in forms.py, and then creates a UserProfile from UserProfileForm. It saves
+# various fields like password and profile picture and returns any errors if registration
+# was unsuccessful in any way.
 
 def register(request):
     context = RequestContext(request)
@@ -110,6 +133,13 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
+# Function: user_login
+# --------------------
+# Retrieves information from the form sent by a POST request and attempts to authenticate
+# the credentials (username and password). If the user exists, it logs the user in and redirects
+# to the homepage. If not, 'bad_details' is set to true and returned, which prompts the HTML to
+# display an error message.
+
 def user_login(request):
 	context = RequestContext(request)
 
@@ -153,11 +183,21 @@ def profile(request):
 				context_dict['picture_url']=profile.picture.url
 	return HttpResponse(simplejson.dumps(context_dict))
 
+#Function: user_logout
+#---------------------
+#Logs the current user out of the system. Requires that a user is logged in first
+
 @login_required
 def user_logout(request):
 	logout(request)
 
 	return HttpResponseRedirect('/soundmap/')
+
+# Function: likeSong
+# ------------------------
+# This method requres that a user is logged in. It gets the selected song from
+# the database, increases the number of likes by 1, saves the object and finally
+# returns the number of likes for the callback function of the AJAJ request to display
 
 @login_required
 def likeSong(request):
@@ -175,6 +215,12 @@ def likeSong(request):
 			song.save()
 
 	return HttpResponse(likes)
+
+# Function: updateListens
+# -----------------------
+# Called when a song in the playlist is clicked, just after the soundmap
+# widget is launched. It selects the current song from the database, increases
+# the listen field by 1 and then saves the object.
 
 def updateListens(request):
 	context= RequestContext(request)
@@ -215,6 +261,11 @@ def getMarkerInfo(request):
 
 	else:
 		return HttpResponseRedirect('/soundmap/')
+
+# Function: getPlaylistInfo
+# -------------------------
+# Given a unique city name, (city and state), the method loads all songs that are in the
+# playlist and returns a JSON object containing information about those songs (ie name, artist, url, etc)
 
 def getPlaylistInfo(request):
 	context=RequestContext(request)

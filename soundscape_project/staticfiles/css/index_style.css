@@ -1,0 +1,93 @@
+#playSong {
+	color: #424242;
+	text-decoration: none;
+}
+
+#mapContainer {
+	position: static;
+	height: 55em;
+	float: left;
+	padding: 0;
+	background-color: #fefcf3;
+}
+
+
+ul.no-bullet{
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+}
+
+li.playlist {
+	background: url(note.png) no-repeat left top;
+	background-size: 1.25em;
+	padding-left:2.1em;
+	margin-bottom: 0.8em;
+}
+/*
+#infoWindow{
+	height: 5em;
+	width: 17.5em;
+}
+*/
+#songTable {
+	background-color: #d9d5ba;
+	position: relative;
+	padding-top: 1em;
+	height: 55em;
+	border: 0.5em solid #424242;
+	float: right;
+}
+
+#soundcloudPlayer {
+	position: absolute;
+	bottom: 0px;
+	left: 0em;
+	width: auto;
+}
+
+iframe {
+	display: block;
+	width: auto;
+	height: auto;
+	max-height: 100%;
+}
+
+/*CSS for JQuery UI dialog box*/
+
+input.text {
+	margin-bottom: 12px;
+	width: 95%;
+}
+
+fieldset {
+	padding:2em;
+}
+
+.validateTips {
+	border: 1px solid transparent;
+}
+
+.ui-dialog-titlebar {
+	padding: 0.5em 1em 0.5em 1em;
+}
+.ui-button {
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.ui-dialog-titlebar .ui-button {	/*The button in the titlebar*/
+	float: right;
+	padding:0.15em;
+}
+.ui-dialog-content {		/*Gets rid of the border between content and button pane*/
+	border-bottom: 0px;
+}
+.ui-dialog-buttonpane{
+	border-top: 0px;
+	padding-bottom: 1em;
+}
+.ui-dialog-buttonset {		/*Buttons in the bottom bar*/
+	text-align: center;
+}
+.ui-dialog-buttonset .ui-button {
+	margin-right: 2em;
+}

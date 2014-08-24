@@ -8,7 +8,8 @@
 	    <meta charset="utf-8"/>
 	    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 	    <script src="{% static "jquery-1.11.1.js" %}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=".concat("AIzaSyC-cB1jNOlV1bFrl5cDJKKknbXQzY5vY8Q")></script>
+		<script src="{% static "sensitiveInfo.js" %}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=".concat(mapKey)></script>
 		<link href='http://fonts.googleapis.com/css?family=Overlock|Yellowtail|Open+Sans|Forum|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 	    {% block head_block %}
 		{% endblock %}
