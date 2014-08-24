@@ -2,7 +2,7 @@ from django.contrib import admin
 from soundmap.models import UserProfile, Song, Playlist
 
 class SongAdmin(admin.ModelAdmin):
-	list_display = ('name', 'artist', 'url', 'listens', 'likes')
+	list_display = ('name', 'artist', 'url', 'uploader', 'listens', 'likes', 'city', 'playlist')
 	
 class PlaylistAdmin(admin.ModelAdmin):
 	list_display=('city', 'latitude', 'longitude')
@@ -10,4 +10,3 @@ class PlaylistAdmin(admin.ModelAdmin):
 admin.site.register(UserProfile)
 admin.site.register(Song, SongAdmin)
 admin.site.register(Playlist, PlaylistAdmin)
-

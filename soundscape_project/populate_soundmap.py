@@ -1,8 +1,8 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soundscape_project.settings')
-from soundmap.models import Song, User, UserProfile
+from soundmap.models import Song, User, UserProfile, Playlist
 
-uploader = User.objects.get(username="oldgregg")
+uploader = User.objects.get(username="Tommy")
 uploader_profile = UserProfile.objects.get(user=uploader)
 
 def populate():
@@ -18,7 +18,8 @@ def populate():
 		print "- {0}".format(str(song))
 
 def add_song(name, artist, url, lat, lng, listens=0, likes=0, up=uploader_profile):
-	song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=listens, likes=likes, latitude=lat, longitude=lng, uploader=up)[0]
+	playlist = Playlist.objects.get_or_create(latitude=lat, longitude=lng, city ="Default")[0]
+	song = Song.objects.get_or_create(name=name, artist=artist, url=url, listens=listens, likes=likes, city="Default", uploader=up, playlist=playlist)[0]
 	return song
 
 if __name__ =='__main__':
