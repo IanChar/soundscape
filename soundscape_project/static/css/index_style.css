@@ -12,11 +12,7 @@
 }
 
 
-ul.no-bullet{
-   list-style-type: none;
-   padding: 0px;
-   margin: 0px;
-}
+
 
 li.playlist {
 	background: url(note.png) no-repeat left top;

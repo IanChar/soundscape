@@ -74,7 +74,13 @@
     </div>
 
     <!-- Modal dialog form for song submission -->
-    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-md">Add a Song</button>
+    {% if user.is_authenticated %}
+    	<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-md">Add a Song</button>
+    {% else %}
+    <div data-toggle="tooltip" data-placement='right' title='Please Login to Add a Song'>
+    	<button type='button' class="btn btn-primary disabled" >Add a Song</button>
+    </div>
+    {% endif %}
 
 	<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-md">
