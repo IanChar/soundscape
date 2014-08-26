@@ -12,4 +12,6 @@ urlpatterns=patterns('',
 	url(r'^get_playlist_info/$', views.getPlaylistInfo, name='get_playlist_info'),
 	url(r'^like_song/$', views.likeSong, name='like_song'),
 	url(r'^updateListens/$', views.updateListens, name='update_listens'),
+	url(r'^my_profile/$', views.my_profile, name='my_profile'),
+	url(r'^delete_song/$', views.delete_song, name='delete_song'),
 )

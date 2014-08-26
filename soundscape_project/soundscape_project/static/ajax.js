@@ -27,3 +27,16 @@ var playMusic= function(songUrl, songid, username) {
 		}
 	});
 }
+
+$(document).ready(function ($) {
+	$('#deleteBtn').on( 'click', function () {
+		var songid = $(this).attr('data-id');
+		$.get('/soundmap/delete_song/', {song_id: songid}, function(data) {
+			if(data=='True') {
+				console.log($(this));
+				$(this).parent('li').remove();
+				$(this).siblings().remove();
+			}
+		});
+	})
+})

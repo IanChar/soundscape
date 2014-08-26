@@ -7,6 +7,11 @@ body {
 	background: rgba(94, 94, 94, 0.8);
 }
 
+ul.no-bullet{
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+}
 
 #brand {
 	padding: 0;

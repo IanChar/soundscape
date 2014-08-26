@@ -166,6 +166,26 @@ def user_login(request):
 	else:
 		return render_to_response('soundmap/login.html', context_dict, context)
 
+# Function: my_profile
+# --------------------
+# Renders an html page containing information about the current user's profile. Includes
+# the username, location, profile picture (if one is uploaded), and all uploaded songs.
+# The user may choose to manage songs by deleting them.
+
+@login_required
+def my_profile(request):
+	context=RequestContext(request)
+	current_user = User.objects.get(username=request.user)
+	try:
+		profile = UserProfile.objects.get(user=current_user)
+		song_list=Song.objects.filter(uploader=profile)
+	except UserProfile.DoesNotExist:
+		profile=None
+		song_list=None
+
+	context_dict={'user':current_user, 'user_profile':profile, 'song_list':song_list}
+	return render_to_response('soundmap/my_profile.html', context_dict, context)
+
 def profile(request):
 	context = RequestContext(request)
 	profile = None
@@ -215,6 +235,22 @@ def likeSong(request):
 			song.save()
 
 	return HttpResponse(likes)
+
+# Function: delete_song
+# -------------------
+# Deletes a song from the database as specified by its id. Returns true upon success
+
+@login_required
+def delete_song(request):
+	context = RequestContext(request)
+	song_id	= None
+	success = False
+	if request.method=='GET':
+		song_id=request.GET['song_id']
+	if song_id:
+		Song.objects.get(id=int(song_id)).delete()
+		success = True
+	return HttpResponse(success)
 
 # Function: updateListens
 # -----------------------
