@@ -37,8 +37,10 @@
 			    			{% for song in song_list %}
 			    			<li class="playlist">
 			    				<a onclick="playMusic('{{song.url}}', {{song.id}}, '{{song.uploader.user.username}}')" href="#" id="playSong">{{song.name}} -- {{song.artist}}</a>
-			    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
-			    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-xs btn-default" type="button">Like</button>
+			    				{% if user.is_authenticated %}
+				    				<b id="like_count_{{song.id}}">{{song.likes}} likes</b>
+				    				<button onclick="likeSong({{song.id}})" id="like-btn-{{song.id}}" data-songid="{{song.id}}" class="btn btn-xs btn-default" type="button">Like</button>
+			    				{% endif %}
 			    			</li>
 			    			{% endfor %}
 			    			
@@ -77,9 +79,14 @@
     {% if user.is_authenticated %}
     	<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-md">Add a Song</button>
     {% else %}
-    <div data-toggle="tooltip" data-placement='right' title='Please Login to Add a Song'>
+    <div id="disabledButton" data-toggle="tooltip" data-placement='right' title='Please Login to Add a Song'>
     	<button type='button' class="btn btn-primary disabled" >Add a Song</button>
     </div>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		$('#disabledButton').tooltip({animate:true});
+		});
+    </script>
     {% endif %}
 
 	<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
