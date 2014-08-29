@@ -11,8 +11,12 @@
 	background-color: #fefcf3;
 }
 
-
-
+#disabledButton {
+	width: auto;
+	height: auto;
+	position: static;
+	display: inline-block;
+}
 
 li.playlist {
 	background: url(note.png) no-repeat left top;
