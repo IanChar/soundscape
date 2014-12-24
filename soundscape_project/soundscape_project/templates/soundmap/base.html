@@ -34,12 +34,8 @@
 		   			<div class="collapse navbar-collapse" id = "navbar-collapse-1">
 		   				<ul class="nav navbar-nav" id="header">
 		   					<a href="/soundmap/" id="brand">Soundscape</a>
-					  		{% if user.is_authenticated%}
-					  			<p class="navbar-text" style="color:#e7e8d1;"> Welcome back {{user.username}}!</p>
-					  		{% else %}
-					  			<p class="navbar-text" style="color:#e7e8d1;"> The World's Only Interactive Sound Map! </p>
-					  		{% endif %}
 		   				</ul>
+
 				  		<ul class="nav navbar-nav navbar-right" id="right-menu">
 				  			{% if user.is_authenticated %}
 				  				<li class="user-control"><form action="/soundmap/my_profile/"><input class="btn btn-primary navbar-btn" type="submit" value = "My Profile"></form></li>

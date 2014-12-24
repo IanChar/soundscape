@@ -22,11 +22,10 @@ ul.no-bullet{
 	text-decoration: none;
 }
 .navbar-text {
-	margin-left: 2px;
-	margin-top: -5px;
-	margin-bottom: 5px;
+	bottom: 5px;
 	font-size:16px;
-	color: 
+	margin: 0 0 0 0;
+	position: absolute;
 }
 .container-fluid {
 	padding: 0;
@@ -37,7 +36,6 @@ ul.no-bullet{
 	display: block;
 	margin-left: 4.167%;	/*1/24 of the total width on each side since the content takes up 11/12*/
 }
-
 
 #content {
 	margin-top: 6.32em;
