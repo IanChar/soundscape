@@ -1,5 +1,6 @@
 # Django settings for soundscape_project project.
 import os
+import dj_database_url
 
 SETTINGS_DIR = os.path.dirname(__file__)
 #PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
@@ -175,3 +176,7 @@ LOGGING = {
         },
     }
 }
+
+DATABASES['default'] =  dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
