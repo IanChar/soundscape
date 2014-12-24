@@ -1,0 +1,83 @@
+body {
+	font-family: 'Open Sans', cursive;
+	background-color: #fefcf3;
+}
+
+#navigation {
+	background: rgba(94, 94, 94, 0.8);
+}
+
+ul.no-bullet{
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+}
+
+#brand {
+	padding: 0;
+	margin-top: -5px;
+	font-family: 'Yellowtail', cursive;
+	font-size: 50px;
+	color: #8e001c;
+	text-decoration: none;
+}
+.navbar-text {
+	margin-left: 2px;
+	margin-top: -5px;
+	margin-bottom: 5px;
+	font-size:16px;
+	color: 
+}
+.container-fluid {
+	padding: 0;
+}
+
+#header {
+	margin-top: -0.45em;
+	display: block;
+	margin-left: 4.167%;	/*1/24 of the total width on each side since the content takes up 11/12*/
+}
+
+
+#content {
+	margin-top: 6.32em;
+	position: static;
+	margin-left: 4.167%;	/*1/24 of the total width on each side since the content takes up 11/12*/
+	background-color: #fefcf3;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#info {
+	float: clear;
+}
+#navbar-collapse-1 {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+#right-menu {
+	position: absolute;
+	margin-right: 4.167%;
+	text-align: center;
+	height: 100%;
+	text-align: center;
+	right: 0;
+}
+
+.user-control {
+	padding-left: 2em;
+ 	top: 50%;
+ 	transform: translateY(-50%);
+}
+
+footer {
+	position: static;
+	float: clear;
+	text-align: center;
+	color: #e7e8d1;
+	background-color: #5e5e5e;
+}
+
+

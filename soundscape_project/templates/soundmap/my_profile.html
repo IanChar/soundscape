@@ -1,0 +1,34 @@
+{% extends 'soundmap/base.html' %}
+
+{% load static %}
+
+{% block title %} {{user.username}}'s Profile {% endblock %}
+
+{% block body_block %}
+<div class>
+	{% if user_profile %}
+	<h2>My Profile</h2>
+
+		<p>Username: {{user.username}} </p>
+
+		<p>Location: {{user_profile.location}}</p>
+
+		<p> Profile Picture: 
+		{% if user_profile.picture %}
+			<img style="height:auto; width:auto; max-height:50%; max-width:100%;" id ="profPic" src="{{user_profile.picture.url}}"/>
+		{% else %}
+			You currently do not have a profile picture
+		{% endif %}
+		</p>
+
+		<p> These are the songs you have uploaded: </br>
+			<ul class='no-bullet'>
+			{% for song in song_list %}
+				<li>{{song.name}} -- {{song.artist}} 
+				<button class="btn btn-xs" data-id="{{song.id}}" id="deleteBtn"> Delete </button></li>
+			{% endfor %}
+		</p>
+	{% endif %}
+	<script type="text/javascript" src='{% static "ajax.js" %}'></script>
+</div>
+{% endblock %}

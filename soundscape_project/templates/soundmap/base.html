@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	    <meta charset="utf-8"/>
+	    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+	    <script src="{% static "jquery-1.11.1.js" %}"></script>
+		<script src="{% static "sensitiveInfo.js" %}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=".concat(mapKey)></script>
+		<link href='http://fonts.googleapis.com/css?family=Overlock|Yellowtail|Open+Sans|Forum|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	    {% block head_block %}
+		{% endblock %}
+		<link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+		<title>Soundscape - {% block title %} Interactive Sound Map {% endblock %}</title>
+		
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle-"collapse" data-target="#navbar-collapse-1">
+							<span class="sr-only"> Toggle Navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+				  		
+		   			</div>
+		   			<div class="collapse navbar-collapse" id = "navbar-collapse-1">
+		   				<ul class="nav navbar-nav" id="header">
+		   					<a href="/soundmap/" id="brand">Soundscape</a>
+					  		{% if user.is_authenticated%}
+					  			<p class="navbar-text" style="color:#e7e8d1;"> Welcome back {{user.username}}!</p>
+					  		{% else %}
+					  			<p class="navbar-text" style="color:#e7e8d1;"> The World's Only Interactive Sound Map! </p>
+					  		{% endif %}
+		   				</ul>
+				  		<ul class="nav navbar-nav navbar-right" id="right-menu">
+				  			{% if user.is_authenticated %}
+				  				<li class="user-control"><form action="/soundmap/my_profile/"><input class="btn btn-primary navbar-btn" type="submit" value = "My Profile"></form></li>
+					        	<li class="user-control"><form action="/soundmap/logout/"><input class="btn btn-primary navbar-btn" type="submit" value = "Logout"></form></li>
+					       	{% else %}
+						       	<li class="user-control"><form action="/soundmap/register"><input class="btn btn-success navbar-btn" type="submit" value="Register"></form></li>
+						        <li class="user-control"><form action="/soundmap/login/"><input class="btn btn-primary navbar-btn" type="submit" value="Login"></form></li>
+					       	{% endif %}
+						</ul>
+					</div>
+		   		</div>
+		  	</nav>
+
+			<div class="col-md-11" id="content">
+				{% block body_block %}
+				{% endblock %}
+			</div>
+		
+			<footer class="col-md-12">
+				<p> Powered by Google Maps and SoundCloud </p>
+				<p>&copy; 2014 Ian Char and Lecheng Fan</p>
+			</footer>
+		</div>
+	</body>
+
+</html>

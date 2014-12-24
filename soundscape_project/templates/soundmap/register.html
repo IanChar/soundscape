@@ -1,0 +1,52 @@
+{% extends 'soundmap/base.html' %}
+
+{% load static %}
+
+{% block title %} Register {% endblock %}
+
+{% block head_block %}
+	<style>
+		#container {
+			padding-left: 0;
+		}
+		#registration_form {
+			padding-left: 0em;
+			height:32em;
+		}
+	</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="container-fluid" id="container">
+	<div class="col-xs-5" id="registration_form">
+		{% if registered%}
+			<h1> Thank you for registering! </h1> </br>
+			<a href="/soundmap/login/">Login</a> when you are ready </br>
+			<a href = "/soundmap/"> Return to the homepage. </a>
+		{% else %}
+
+		<form id = "user_form" method = "post" action="/soundmap/register/" enctype = "multipart/form-data">
+			{% csrf_token %}
+			<h1>Register here!</h1>
+			{% for field in user_form.visible_fields %}
+				{{field.errors}}
+				<label>{{field.help_text}} </label><br/>
+				<input class="form-control" name ='{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder = '{{field.label}}'><br/>
+			{% endfor %}
+			{% for field in profile_form.visible_fields %}
+				{{field.errors}}
+				<label>{{field.help_text}} </label><br/>
+				{% if field.field.widget.input_type == "file" %}
+					<input name = '{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder='{{field.label}}'><br/>
+				{% else %}
+					<input class="form-control" name = '{{field.label}}' type = "{{field.field.widget.input_type}}" placeholder='{{field.label}}'><br/>
+				{% endif %}
+			{% endfor %}
+
+
+			<input class="btn btn-primary" type = "submit" name="submit" value = "Register"/>
+		</form>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

@@ -1,3 +1,7 @@
 venv
 *.pyc
+<<<<<<< HEAD
 soundscape_project/staticfiles
+=======
+soundscape_project/soundscape_project/static/sensitiveInfo.js
+>>>>>>> 2b53f00e2265a59461cafd58407cf6ba9f3f95f0
