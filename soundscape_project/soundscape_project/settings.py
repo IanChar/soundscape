@@ -24,7 +24,15 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
     #     'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
     # }
-    'default': dj_database_url.config(default='postgres://localhost')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dg3ageskkivrc',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'scnbtynafjnrtn',
+        'PASSWORD': 'rAwF3jyUNfBGHh4ekYA9kQtzai',
+        'HOST': 'ec2-54-83-27-26.compute-1.amazonaws.com',                  # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'PORT': '5432',                      # Set to empty string for default.
+    }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -178,6 +186,6 @@ LOGGING = {
     }
 }
 
-DATABASES['default'] =  dj_database_url.config()
+#DATABASES['default'] =  dj_database_url.config(default='postgres://localhost')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

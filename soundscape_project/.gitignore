@@ -2,3 +2,4 @@ venv
 *.pyc
 soundscape_project/soundscape_project/static/sensitiveInfo.js
 soundscape_project/staticfiles
+soundscape_project/static
