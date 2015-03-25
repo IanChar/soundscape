@@ -20,10 +20,11 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    #     'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
+    # }
+    'default': dj_database_url.config(default='postgres://localhost')
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
